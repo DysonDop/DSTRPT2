@@ -1,0 +1,255 @@
+═══════════════════════════════════════════════════════════════════════════
+  HOSPITAL PATIENT CARE MANAGEMENT SYSTEM - INTEGRATION GUIDE
+  Team Project - Data Structures Part 2
+═══════════════════════════════════════════════════════════════════════════
+
+PROJECT STRUCTURE:
+──────────────────────────────────────────────────────────────────────────
+DataStructures_Part2/
+│
+├── DataStructures_Part2.cpp          (Main program file with menu system)
+├── AmbulanceDispatcher.h             (Header file for Ambulance Dispatcher)
+├── AmbulanceDispatcher.cpp           (Implementation file)
+├── Ambulance_Dispatcher_Dataset.csv  (Data file)
+└── Medical_Supply_Manager_Dataset.csv (Data file for other module)
+
+
+COMPLETED MODULES:
+──────────────────────────────────────────────────────────────────────────
+
+✅ MODULE 4: AMBULANCE DISPATCHER (Implemented)
+   - Role: Schedules hospital ambulances for continuous duty
+   - Data Structure: Circular Queue
+   - Files: AmbulanceDispatcher.h, AmbulanceDispatcher.cpp
+   
+   Functionalities:
+   1. Register Ambulance - Add ambulance to active duty queue
+   2. Rotate Ambulance Shift - Rotate schedule (front to back)
+   3. Display Ambulance Schedule - Show all ambulances in order
+   
+   Why Circular Queue?
+   - Ambulances need continuous rotation (circular behavior)
+   - Ensures fair distribution of duty time
+   - When ambulance completes duty, moves to back of queue
+   - O(1) time complexity for rotation operations
+
+
+PENDING MODULES (To be implemented by other team members):
+──────────────────────────────────────────────────────────────────────────
+
+❌ MODULE 1: PATIENT ADMISSION CLERK
+   - Recommended Data Structure: Queue (FIFO)
+   - Functionalities needed:
+     1. Admit Patient - Add patient to waiting queue
+     2. Discharge Patient - Remove earliest admitted patient
+     3. View Patient Queue - Display all waiting patients
+   
+   Integration steps:
+   a) Create PatientAdmissionClerk.h and PatientAdmissionClerk.cpp
+   b) Implement Queue data structure (no STL)
+   c) Add function: void patientAdmissionClerkMenu()
+   d) Uncomment line in DataStructures_Part2.cpp (case 1)
+
+
+❌ MODULE 2: MEDICAL SUPPLY MANAGER
+   - Recommended Data Structure: Stack (LIFO)
+   - Functionalities needed:
+     1. Add Supply Stock - Push new supply to stack
+     2. Use 'Last Added' Supply - Pop most recent supply
+     3. View Current Supplies - Display all supplies
+   
+   Integration steps:
+   a) Create MedicalSupplyManager.h and MedicalSupplyManager.cpp
+   b) Implement Stack data structure (no STL)
+   c) Add function: void medicalSupplyManagerMenu()
+   d) Uncomment line in DataStructures_Part2.cpp (case 2)
+
+
+❌ MODULE 3: EMERGENCY DEPARTMENT OFFICER
+   - Recommended Data Structure: Priority Queue
+   - Functionalities needed:
+     1. Log Emergency Case - Add case with priority level
+     2. Process Most Critical Case - Handle highest priority
+     3. View Pending Emergency Cases - Show by priority order
+   
+   Integration steps:
+   a) Create EmergencyDepartment.h and EmergencyDepartment.cpp
+   b) Implement Priority Queue (based on severity/priority)
+   c) Add function: void emergencyDepartmentOfficerMenu()
+   d) Uncomment line in DataStructures_Part2.cpp (case 3)
+
+
+HOW TO INTEGRATE YOUR MODULE:
+──────────────────────────────────────────────────────────────────────────
+
+STEP 1: Create Your Header File (YourModule.h)
+───────────────────────────────────────────────
+   - Define your data structures
+   - Declare your class and functions
+   - Follow the same pattern as AmbulanceDispatcher.h
+   
+   Example structure:
+   
+   #ifndef YOUR_MODULE_H
+   #define YOUR_MODULE_H
+   
+   // Your data structures
+   struct YourDataType { ... };
+   
+   // Your class
+   class YourModule {
+   private:
+       // Private members
+   public:
+       // Constructor
+       YourModule();
+       
+       // Your 3 required functions
+       void function1();
+       void function2();
+       void function3();
+   };
+   
+   // Menu function (will be called from main)
+   void yourModuleMenu();
+   
+   #endif
+
+
+STEP 2: Create Your Implementation File (YourModule.cpp)
+─────────────────────────────────────────────────────────
+   - Include your header file
+   - Implement all class methods
+   - Implement the menu function
+   - Follow AmbulanceDispatcher.cpp as a template
+
+
+STEP 3: Update Main Program File (DataStructures_Part2.cpp)
+────────────────────────────────────────────────────────────
+   a) Add your header file:
+      #include "YourModule.h"
+   
+   b) Uncomment the function call in the appropriate case:
+      case 1: patientAdmissionClerkMenu(); break;
+      case 2: medicalSupplyManagerMenu(); break;
+      case 3: emergencyDepartmentOfficerMenu(); break;
+
+
+STEP 4: Update Visual Studio Project Files
+───────────────────────────────────────────
+   a) In DataStructures_Part2.vcxproj, add:
+      <ClCompile Include="YourModule.cpp" />
+      <ClInclude Include="YourModule.h" />
+   
+   b) In DataStructures_Part2.vcxproj.filters, add:
+      <ClCompile Include="YourModule.cpp">
+        <Filter>Source Files</Filter>
+      </ClCompile>
+      <ClInclude Include="YourModule.h">
+        <Filter>Header Files</Filter>
+      </ClInclude>
+
+
+STEP 5: Test Your Module
+─────────────────────────
+   - Compile the entire project
+   - Test each functionality
+   - Ensure menu navigation works properly
+   - Test with sample data
+
+
+CODING STANDARDS:
+──────────────────────────────────────────────────────────────────────────
+✓ No STL containers (no <list>, <vector>, etc.)
+✓ Use arrays and implement data structures manually
+✓ Clear variable names and comments
+✓ Proper indentation
+✓ User-friendly error messages
+✓ Input validation
+✓ Menu-driven interface
+
+
+DATA STRUCTURE REQUIREMENTS:
+──────────────────────────────────────────────────────────────────────────
+
+Module 1: Queue (FIFO - First In, First Out)
+   - Use: Patient admission order
+   - Operations: enqueue, dequeue, display
+   
+Module 2: Stack (LIFO - Last In, First Out)
+   - Use: Medical supplies (last added, first used)
+   - Operations: push, pop, display
+   
+Module 3: Priority Queue (Highest Priority First)
+   - Use: Emergency cases by severity
+   - Operations: insert with priority, remove highest, display
+   
+Module 4: Circular Queue (Continuous Rotation) ✅ DONE
+   - Use: Ambulance scheduling
+   - Operations: enqueue, rotate (dequeue + enqueue), display
+
+
+HOW TO BUILD AND RUN:
+──────────────────────────────────────────────────────────────────────────
+
+Option 1: Visual Studio
+   1. Open DataStructures_Part2.sln in Visual Studio
+   2. Make sure all files are included in project
+   3. Build Solution (Ctrl + Shift + B)
+   4. Run (F5 or Ctrl + F5)
+
+Option 2: Command Line
+   1. Open Developer Command Prompt
+   2. Navigate to project directory
+   3. Compile: cl /EHsc DataStructures_Part2.cpp AmbulanceDispatcher.cpp
+   4. Run: DataStructures_Part2.exe
+
+
+TESTING CHECKLIST:
+──────────────────────────────────────────────────────────────────────────
+Each module should be tested for:
+□ Add/Insert functionality works correctly
+□ Remove/Process functionality works correctly
+□ Display functionality shows proper order
+□ Data structure maintains correct order/priority
+□ CSV loading works (if applicable)
+□ Error handling for empty/full conditions
+□ Menu navigation works properly
+□ Can return to main menu
+
+
+PRESENTATION PREPARATION:
+──────────────────────────────────────────────────────────────────────────
+For the Q&A and Justification (15 Marks):
+   - Explain WHY you chose your data structure
+   - Show how it fits the functionality requirements
+   - Demonstrate understanding of time complexity
+   - Explain advantages over other data structures
+   - Show how your module integrates with the system
+
+
+CONTACT & COLLABORATION:
+──────────────────────────────────────────────────────────────────────────
+- Share this guide with all team members
+- Coordinate on GitHub or shared drive
+- Test integration regularly as modules are completed
+- Help each other with debugging
+
+
+FINAL SUBMISSION CHECKLIST:
+──────────────────────────────────────────────────────────────────────────
+□ All 4 modules implemented
+□ All modules integrated into single program
+□ Code compiles without errors
+□ All functionalities tested and working
+□ Comments and documentation complete
+□ Code follows good practices (indentation, naming, etc.)
+□ CSV data files included
+□ Each member prepared to explain their part
+□ Presentation materials ready
+
+
+═══════════════════════════════════════════════════════════════════════════
+  Good luck with your project! 🚀
+═══════════════════════════════════════════════════════════════════════════
+

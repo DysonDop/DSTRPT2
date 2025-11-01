@@ -18,6 +18,20 @@
     <ClCompile Include="DataStructures_Part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AmbulanceDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MedicalSupplyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AmbulanceDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MedicalSupplyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ambulance_Dispatcher_Dataset.csv">

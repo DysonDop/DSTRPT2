@@ -1,51 +1,51 @@
 Supply ID,Item Name,Category,Quantity,Batch Number,Date Added,Status
 S001,Paracetamol 500mg,Medicine,50,B2100,2025-10-01,In Stock (Ready for Use)
-S002,Ibuprofen 200mg,Protective Gear,55,B2101,2025-10-02,Low Stock – Reorder Soon
-S003,Amoxicillin Capsules,Equipment,60,B2102,2025-10-03,Used in Ward – Pending Refill
-S004,Sterile Gauze Pads,Consumable,65,B2103,2025-10-04,Expired – Awaiting Disposal
+S002,Ibuprofen 200mg,Protective Gear,55,B2101,2025-10-02,Low Stock - Reorder Soon
+S003,Amoxicillin Capsules,Equipment,60,B2102,2025-10-03,Used in Ward - Pending Refill
+S004,Sterile Gauze Pads,Consumable,65,B2103,2025-10-04,Expired - Awaiting Disposal
 S005,Latex Gloves,Medicine,70,B2104,2025-10-05,Under Inspection
 S006,N95 Respirators,Protective Gear,75,B2105,2025-10-06,Allocated for Surgery
 S007,Face Shields,Equipment,80,B2106,2025-10-07,Quarantined Batch
 S008,IV Drip Set,Consumable,85,B2107,2025-10-08,Restocking in Progress
 S009,Surgical Masks,Medicine,90,B2108,2025-10-09,In Stock (Ready for Use)
-S010,Digital Thermometer,Protective Gear,95,B2109,2025-10-10,Low Stock – Reorder Soon
-S011,Syringes 10ml,Equipment,100,B2110,2025-10-11,Used in Ward – Pending Refill
-S012,Blood Pressure Monitor,Consumable,105,B2111,2025-10-12,Expired – Awaiting Disposal
+S010,Digital Thermometer,Protective Gear,95,B2109,2025-10-10,Low Stock - Reorder Soon
+S011,Syringes 10ml,Equipment,100,B2110,2025-10-11,Used in Ward - Pending Refill
+S012,Blood Pressure Monitor,Consumable,105,B2111,2025-10-12,Expired - Awaiting Disposal
 S013,Wheelchair,Medicine,110,B2112,2025-10-13,Under Inspection
 S014,Disinfectant Solution,Protective Gear,115,B2113,2025-10-14,Allocated for Surgery
 S015,Hand Sanitizer,Equipment,120,B2114,2025-10-15,Quarantined Batch
 S016,Paracetamol 500mg,Consumable,125,B2115,2025-10-16,Restocking in Progress
 S017,Ibuprofen 200mg,Medicine,130,B2116,2025-10-17,In Stock (Ready for Use)
-S018,Amoxicillin Capsules,Protective Gear,135,B2117,2025-10-18,Low Stock – Reorder Soon
-S019,Sterile Gauze Pads,Equipment,140,B2118,2025-10-19,Used in Ward – Pending Refill
-S020,Latex Gloves,Consumable,145,B2119,2025-10-20,Expired – Awaiting Disposal
+S018,Amoxicillin Capsules,Protective Gear,135,B2117,2025-10-18,Low Stock - Reorder Soon
+S019,Sterile Gauze Pads,Equipment,140,B2118,2025-10-19,Used in Ward - Pending Refill
+S020,Latex Gloves,Consumable,145,B2119,2025-10-20,Expired - Awaiting Disposal
 S021,N95 Respirators,Medicine,150,B2120,2025-10-21,Under Inspection
 S022,Face Shields,Protective Gear,155,B2121,2025-10-22,Allocated for Surgery
 S023,IV Drip Set,Equipment,160,B2122,2025-10-23,Quarantined Batch
 S024,Surgical Masks,Consumable,165,B2123,2025-10-24,Restocking in Progress
 S025,Digital Thermometer,Medicine,170,B2124,2025-10-25,In Stock (Ready for Use)
-S026,Syringes 10ml,Protective Gear,175,B2125,2025-10-26,Low Stock – Reorder Soon
-S027,Blood Pressure Monitor,Equipment,180,B2126,2025-10-27,Used in Ward – Pending Refill
-S028,Wheelchair,Consumable,185,B2127,2025-10-28,Expired – Awaiting Disposal
+S026,Syringes 10ml,Protective Gear,175,B2125,2025-10-26,Low Stock - Reorder Soon
+S027,Blood Pressure Monitor,Equipment,180,B2126,2025-10-27,Used in Ward - Pending Refill
+S028,Wheelchair,Consumable,185,B2127,2025-10-28,Expired - Awaiting Disposal
 S029,Disinfectant Solution,Medicine,190,B2128,2025-10-29,Under Inspection
 S030,Hand Sanitizer,Protective Gear,195,B2129,2025-10-30,Allocated for Surgery
 S031,Paracetamol 500mg,Equipment,200,B2130,2025-10-01,Quarantined Batch
 S032,Ibuprofen 200mg,Consumable,205,B2131,2025-10-02,Restocking in Progress
 S033,Amoxicillin Capsules,Medicine,210,B2132,2025-10-03,In Stock (Ready for Use)
-S034,Sterile Gauze Pads,Protective Gear,215,B2133,2025-10-04,Low Stock – Reorder Soon
-S035,Latex Gloves,Equipment,220,B2134,2025-10-05,Used in Ward – Pending Refill
-S036,N95 Respirators,Consumable,225,B2135,2025-10-06,Expired – Awaiting Disposal
+S034,Sterile Gauze Pads,Protective Gear,215,B2133,2025-10-04,Low Stock - Reorder Soon
+S035,Latex Gloves,Equipment,220,B2134,2025-10-05,Used in Ward - Pending Refill
+S036,N95 Respirators,Consumable,225,B2135,2025-10-06,Expired - Awaiting Disposal
 S037,Face Shields,Medicine,230,B2136,2025-10-07,Under Inspection
 S038,IV Drip Set,Protective Gear,235,B2137,2025-10-08,Allocated for Surgery
 S039,Surgical Masks,Equipment,240,B2138,2025-10-09,Quarantined Batch
 S040,Digital Thermometer,Consumable,245,B2139,2025-10-10,Restocking in Progress
 S041,Syringes 10ml,Medicine,250,B2140,2025-10-11,In Stock (Ready for Use)
-S042,Blood Pressure Monitor,Protective Gear,255,B2141,2025-10-12,Low Stock – Reorder Soon
-S043,Wheelchair,Equipment,260,B2142,2025-10-13,Used in Ward – Pending Refill
-S044,Disinfectant Solution,Consumable,265,B2143,2025-10-14,Expired – Awaiting Disposal
+S042,Blood Pressure Monitor,Protective Gear,255,B2141,2025-10-12,Low Stock - Reorder Soon
+S043,Wheelchair,Equipment,260,B2142,2025-10-13,Used in Ward - Pending Refill
+S044,Disinfectant Solution,Consumable,265,B2143,2025-10-14,Expired - Awaiting Disposal
 S045,Hand Sanitizer,Medicine,270,B2144,2025-10-15,Under Inspection
 S046,Paracetamol 500mg,Protective Gear,275,B2145,2025-10-16,Allocated for Surgery
 S047,Ibuprofen 200mg,Equipment,280,B2146,2025-10-17,Quarantined Batch
 S048,Amoxicillin Capsules,Consumable,285,B2147,2025-10-18,Restocking in Progress
 S049,Sterile Gauze Pads,Medicine,290,B2148,2025-10-19,In Stock (Ready for Use)
-S050,Latex Gloves,Protective Gear,295,B2149,2025-10-20,Low Stock – Reorder Soon
+S050,Latex Gloves,Protective Gear,295,B2149,2025-10-20,Low Stock - Reorder Soon

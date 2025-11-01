@@ -123,7 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AmbulanceDispatcher.cpp" />
     <ClCompile Include="DataStructures_Part2.cpp" />
+    <ClCompile Include="MedicalSupplyManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AmbulanceDispatcher.h" />
+    <ClInclude Include="MedicalSupplyManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ambulance_Dispatcher_Dataset.csv" />
