@@ -1,0 +1,51 @@
+patient_id,name,age,gender,condition_type,triage_level,status,admitted_at
+1001,Jane Lim,75,Female,Oncology,Critical,Waiting,2025-10-26T08:00
+1002,Arun Kumar,88,Male,Neurology,High,Discharged,2025-10-26T08:07
+1003,Siti Aisyah,43,Male,Pediatric,Low,Under Treatment,2025-10-26T08:14
+1004,Daniel Wong,19,Female,Cardiology,Critical,Waiting,2025-10-26T08:21
+1005,Nur Izzah,52,Female,Pediatric,High,Under Treatment,2025-10-26T08:28
+1006,Mohd Farid,58,Female,Pediatric,High,Under Treatment,2025-10-26T08:35
+1007,Lim Wei Jie,19,Female,General,Critical,Discharged,2025-10-26T08:42
+1008,Alicia Tan,80,Male,Dermatology,Low,Discharged,2025-10-26T08:49
+1009,Rahul Sharma,67,Male,General,Critical,Waiting,2025-10-26T08:56
+1010,Chong Mei Ling,39,Male,Dermatology,Critical,Waiting,2025-10-26T09:03
+1011,Tan Jia Wei,84,Female,Dermatology,Moderate,Waiting,2025-10-26T09:10
+1012,Amir Hamzah,46,Female,Cardiology,Critical,Waiting,2025-10-26T09:17
+1013,Wong Kah Yee,63,Female,Cardiology,Moderate,Under Treatment,2025-10-26T09:24
+1014,Nadia Zulkifli,56,Female,Cardiology,High,Under Treatment,2025-10-26T09:31
+1015,Jason Tan,36,Female,Neurology,Low,Discharged,2025-10-26T09:38
+1016,Ng Wei Sheng,63,Female,Dermatology,High,Waiting,2025-10-26T09:45
+1017,Sara Lee,72,Male,Neurology,Critical,Waiting,2025-10-26T09:52
+1018,Adam Rahman,1,Male,Oncology,Critical,Waiting,2025-10-26T09:59
+1019,Priya Nair,43,Female,Neurology,High,Waiting,2025-10-26T10:06
+1020,Henry Lau,42,Male,Oncology,Critical,Under Treatment,2025-10-26T10:13
+1021,Liyana Aziz,65,Female,Cardiology,Moderate,Waiting,2025-10-26T10:20
+1022,Farah Aina,40,Male,Oncology,High,Under Treatment,2025-10-26T10:27
+1023,Samuel Cheah,14,Male,Dermatology,Low,Discharged,2025-10-26T10:34
+1024,Zara Osman,55,Male,Cardiology,Critical,Waiting,2025-10-26T10:41
+1025,Victor Lim,30,Female,Pediatric,High,Under Treatment,2025-10-26T10:48
+1026,Yasmin Hafiz,46,Male,General,High,Under Treatment,2025-10-26T10:55
+1027,Roslan Daud,31,Female,Cardiology,Critical,Under Treatment,2025-10-26T11:02
+1028,Aida Mokhtar,10,Female,General,Low,Discharged,2025-10-26T11:09
+1029,Daniel Ng,17,Female,General,Low,Waiting,2025-10-26T11:16
+1030,Elaine Chan,43,Female,Oncology,High,Discharged,2025-10-26T11:23
+1031,Hafiz Rahim,63,Female,General,High,Discharged,2025-10-26T11:30
+1032,Alex Tan,16,Male,Oncology,Moderate,Discharged,2025-10-26T11:37
+1033,Nurul Iman,78,Female,Dermatology,Moderate,Under Treatment,2025-10-26T11:44
+1034,Kevin Goh,83,Female,Pediatric,Low,Discharged,2025-10-26T11:51
+1035,Lee Xin Yi,2,Female,Pediatric,High,Under Treatment,2025-10-26T11:58
+1036,Ahmad Faiz,72,Male,Oncology,Low,Discharged,2025-10-26T12:05
+1037,Michelle Ong,12,Female,General,Critical,Waiting,2025-10-26T12:12
+1038,Shafiq Hakim,39,Female,Neurology,Low,Under Treatment,2025-10-26T12:19
+1039,Grace Wong,65,Female,Orthopedic,Low,Discharged,2025-10-26T12:26
+1040,Siti Nur,28,Male,Cardiology,High,Waiting,2025-10-26T12:33
+1041,Ravi Chandran,71,Female,Neurology,Low,Waiting,2025-10-26T12:40
+1042,Kumar Raj,75,Male,Oncology,Low,Discharged,2025-10-26T12:47
+1043,Amirah Shah,86,Male,Pediatric,High,Waiting,2025-10-26T12:54
+1044,Heng Soon,56,Female,Neurology,Critical,Waiting,2025-10-26T13:01
+1045,Rosita Ismail,22,Male,General,Critical,Waiting,2025-10-26T13:08
+1046,Farhan Zain,36,Female,Orthopedic,Critical,Under Treatment,2025-10-26T13:15
+1047,Tasha Lim,64,Female,Orthopedic,High,Discharged,2025-10-26T13:22
+1048,Irfan Salleh,25,Female,Pediatric,Moderate,Discharged,2025-10-26T13:29
+1049,Rachel Goh,43,Female,Orthopedic,Critical,Discharged,2025-10-26T13:36
+1050,Thomas Lee,44,Male,Dermatology,High,Discharged,2025-10-26T13:43

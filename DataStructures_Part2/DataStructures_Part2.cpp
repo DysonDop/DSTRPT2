@@ -5,12 +5,10 @@
 #include <iostream>
 #include "AmbulanceDispatcher.h"
 #include "MedicalSupplyManager.h"
+#include "EDO.h"
+#include "PAC.h"
 
 using namespace std;
-
-// Function prototypes for other modules (to be implemented by other team members)
-void patientAdmissionClerkMenu();
-void emergencyDepartmentOfficerMenu();
 
 // Display main menu header
 void displayMainMenuHeader() {
@@ -55,16 +53,8 @@ int main() {
 
         switch (mainChoice) {
             case 1:
-                cout << "\n[INFO] Patient Admission Clerk module\n";
-                cout << "This module will be implemented by team member 1.\n";
-                cout << "Expected features:\n";
-                cout << "  - Admit Patient\n";
-                cout << "  - Discharge Patient\n";
-                cout << "  - View Patient Queue\n";
-                cout << "\nPress Enter to return to main menu...";
-                cin.ignore();
-                cin.get();
-                // patientAdmissionClerkMenu(); // Uncomment when implemented
+                // Patient Admission Clerk - MODULE 1 (Implemented)
+                patientAdmissionClerkMenu();
                 break;
                 
             case 2:
@@ -73,16 +63,8 @@ int main() {
                 break;
                 
             case 3:
-                cout << "\n[INFO] Emergency Department Officer module\n";
-                cout << "This module will be implemented by team member 3.\n";
-                cout << "Expected features:\n";
-                cout << "  - Log Emergency Case\n";
-                cout << "  - Process Most Critical Case\n";
-                cout << "  - View Pending Emergency Cases\n";
-                cout << "\nPress Enter to return to main menu...";
-                cin.ignore();
-                cin.get();
-                // emergencyDepartmentOfficerMenu(); // Uncomment when implemented
+                // Emergency Department Officer - MODULE 3 (Implemented)
+                emergencyDepartmentOfficerMenu();
                 break;
                 
             case 4:
@@ -109,17 +91,8 @@ int main() {
     return 0;
 }
 
-// Placeholder function implementations (for future integration)
-// These will be replaced by actual implementations from other team members
-
-void patientAdmissionClerkMenu() {
-    // To be implemented by team member handling Patient Admission Clerk role
-    // Recommended data structure: Queue (FIFO)
-}
-
+// Module implementations:
+// patientAdmissionClerkMenu() is now implemented in PAC.cpp
 // medicalSupplyManagerMenu() is now implemented in MedicalSupplyManager.cpp
-
-void emergencyDepartmentOfficerMenu() {
-    // To be implemented by team member handling Emergency Department Officer role
-    // Recommended data structure: Priority Queue (based on severity)
-}
+// emergencyDepartmentOfficerMenu() is now implemented in EDO.cpp
+// ambulanceDispatcherMenu() is now implemented in AmbulanceDispatcher.cpp
