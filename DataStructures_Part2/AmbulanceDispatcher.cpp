@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <cstdio>  // For sprintf_s
+#include <iomanip>
 using namespace std;
 
 // Global instance for the menu system
@@ -46,8 +46,9 @@ void AmbulanceDispatcher::registerAmbulance() {
     cout << "-----------------------------------------------------------------------\n";
     
     // Generate next ID based on count
-    char nextID[10];
-    sprintf_s(nextID, "A%03d", count + 1);
+    stringstream ss;
+    ss << "A" << setfill('0') << setw(3) << (count + 1);
+    string nextID = ss.str();
     
     cout << "Suggested ID: " << nextID << "\n";
     cout << "  1. Use suggested ID (" << nextID << ")\n";

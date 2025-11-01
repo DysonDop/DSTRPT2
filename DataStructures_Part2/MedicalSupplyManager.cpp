@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <cstdio>  // For sprintf_s
+#include <iomanip>
 using namespace std;
 
 // Global instance for the menu system
@@ -44,8 +44,9 @@ void MedicalSupplyManager::addSupplyStock() {
     cout << "-----------------------------------------------------------------------\n";
     
     // Generate next ID based on count
-    char nextID[10];
-    sprintf_s(nextID, "S%03d", top + 2);  // +2 because top starts at -1
+    stringstream ss;
+    ss << "S" << setfill('0') << setw(3) << (top + 2);  // +2 because top starts at -1
+    string nextID = ss.str();
     
     cout << "Suggested ID: " << nextID << "\n";
     cout << "  1. Use suggested ID (" << nextID << ")\n";
@@ -140,12 +141,12 @@ void MedicalSupplyManager::addSupplyStock() {
     cin.ignore();
     
     // 5. BATCH NUMBER - Auto-generate with custom option
-    cout << "\n--------------------------------------------------------------------\n";
-    cout << "5. BATCH NUMBER\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "\n5. BATCH NUMBER\n";
+    cout << "-----------------------------------------------------------------------\n";
     
-    char nextBatch[10];
-    sprintf_s(nextBatch, "B%04d", 2100 + top + 1);
+    stringstream ssBatch;
+    ssBatch << "B" << setfill('0') << setw(4) << (2100 + top + 1);
+    string nextBatch = ssBatch.str();
     
     cout << "Suggested Batch: " << nextBatch << "\n";
     cout << "  1. Use suggested batch (" << nextBatch << ")\n";
