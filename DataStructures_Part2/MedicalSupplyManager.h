@@ -2,9 +2,11 @@
 #define MEDICAL_SUPPLY_MANAGER_H
 
 #include <string>
+#include <iostream>
+
 using namespace std;
 
-// Medical Supply structure to store supply details
+// Medical supply data structure
 struct MedicalSupply {
     string supplyID;
     string itemName;
@@ -15,44 +17,32 @@ struct MedicalSupply {
     string status;
 };
 
-// Stack class for Medical Supply Manager
-class MedicalSupplyManager {
-private:
-    static const int MAX_SIZE = 100;
-    MedicalSupply supplies[MAX_SIZE];
-    int top;  // Points to the top of the stack
-
-public:
-    // Constructor
-    MedicalSupplyManager();
-
-    // Check if stack is full
-    bool isFull();
-
-    // Check if stack is empty
-    bool isEmpty();
-
-    // Function 1: Add Supply Stock (Push to stack)
-    void addSupplyStock();
-
-    // Function 2: Use 'Last Added' Supply (Pop from stack - LIFO)
-    void useLastAddedSupply();
-
-    // Function 3: View Current Supplies (Display all supplies in stack)
-    void viewCurrentSupplies();
-
-    // Load data from CSV file
-    void loadFromCSV(string filename);
-
-    // Save data to CSV file
-    void saveToCSV(string filename);
-
-    // Get count of supplies
-    int getCount();
+// Stack node structure
+struct Node {
+    MedicalSupply data;
+    Node* next;
 };
 
-// Menu function for Medical Supply Manager module
+// Medical supply manager using LIFO stack
+class MedicalSupplyManager {
+private:
+    Node* top;
+    void addSupplyStock_Engine(MedicalSupply newSupply);
+
+public:
+    MedicalSupplyManager();
+    ~MedicalSupplyManager();
+
+    bool isEmpty();
+    int getCount();
+
+    void addSupplyStock();
+    void useLastAddedSupply();
+    void viewCurrentSupplies();
+    void loadFromCSV(string filename);
+    void saveToCSV(string filename);
+};
+
 void medicalSupplyManagerMenu();
 
-#endif // MEDICAL_SUPPLY_MANAGER_H
-
+#endif 
