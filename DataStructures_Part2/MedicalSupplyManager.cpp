@@ -3,49 +3,69 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <limits>
+
 using namespace std;
 
-// Global instance for the menu system
+// Global instance for menu operations
 static MedicalSupplyManager* globalSupplyManager = nullptr;
 
-// Constructor
+// Initialize empty stack
 MedicalSupplyManager::MedicalSupplyManager() {
-    top = -1;  // Stack is empty initially
+    top = nullptr;
 }
 
-// Check if stack is full
-bool MedicalSupplyManager::isFull() {
-    return top == MAX_SIZE - 1;
+// Clean up all nodes to prevent memory leaks
+MedicalSupplyManager::~MedicalSupplyManager() {
+    while (!isEmpty()) {
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+    }
 }
 
 // Check if stack is empty
 bool MedicalSupplyManager::isEmpty() {
-    return top == -1;
+    return top == nullptr;
 }
 
-// Function 1: Add Supply Stock (Push to stack)
-void MedicalSupplyManager::addSupplyStock() {
-    if (isFull()) {
-        cout << "\n[ERROR] Supply storage is full! Cannot add more supplies.\n";
-        return;
+// Count total items in stack
+int MedicalSupplyManager::getCount() {
+    int count = 0;
+    Node* current = top;
+    
+    while (current != nullptr) {
+        count++;
+        current = current->next;
     }
+    return count;
+}
 
+// Push new supply to top of stack
+void MedicalSupplyManager::addSupplyStock_Engine(MedicalSupply newSupply) {
+    Node* newNode = new Node();
+    newNode->data = newSupply;
+    newNode->next = top;
+    top = newNode;
+}
+
+// Interactive menu to add new supply
+void MedicalSupplyManager::addSupplyStock() {
     MedicalSupply newSupply;
     int choice;
     
     cout << "\n";
     cout << "=======================================================================\n";
-    cout << "                          ADD NEW SUPPLY STOCK                          \n";
+    cout << "                      ADD NEW SUPPLY STOCK                             \n";
     cout << "=======================================================================\n";
     cout << "\n";
     
-    // 1. SUPPLY ID - Auto-generate with option to customize
+    // Supply ID input
     cout << "1. SUPPLY ID\n";
     cout << "-----------------------------------------------------------------------\n";
     
-    // Generate next ID based on count
     stringstream ss;
-    ss << "S" << setfill('0') << setw(3) << (top + 2);  // +2 because top starts at -1
+    ss << "S" << setfill('0') << setw(3) << (getCount() + 1);
     string nextID = ss.str();
     
     cout << "Suggested ID: " << nextID << "\n";
@@ -60,12 +80,12 @@ void MedicalSupplyManager::addSupplyStock() {
         cout << "Enter Supply ID (format: S001, S002, etc.): ";
         cin >> newSupply.supplyID;
     }
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
-    // 2. ITEM NAME - Predefined list with custom option
+    // Item name selection
     cout << "\n--------------------------------------------------------------------\n";
     cout << "2. ITEM NAME\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "Select item from inventory:\n";
     cout << "  1. Paracetamol 500mg\n";
     cout << "  2. Ibuprofen 200mg\n";
@@ -85,7 +105,7 @@ void MedicalSupplyManager::addSupplyStock() {
     cout << " 16. Enter custom item name\n";
     cout << "Your choice: ";
     cin >> choice;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
     switch (choice) {
         case 1: newSupply.itemName = "Paracetamol 500mg"; break;
@@ -110,11 +130,11 @@ void MedicalSupplyManager::addSupplyStock() {
         default:
             newSupply.itemName = "Unknown Item";
     }
-    
-    // 3. CATEGORY - Predefined options
+
+    // Category selection
     cout << "\n--------------------------------------------------------------------\n";
     cout << "3. CATEGORY\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "Select supply category:\n";
     cout << "  1. Medicine\n";
     cout << "  2. Protective Gear\n";
@@ -122,8 +142,7 @@ void MedicalSupplyManager::addSupplyStock() {
     cout << "  4. Consumable\n";
     cout << "Your choice: ";
     cin >> choice;
-    cin.ignore();
-    
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     switch (choice) {
         case 1: newSupply.category = "Medicine"; break;
         case 2: newSupply.category = "Protective Gear"; break;
@@ -132,20 +151,24 @@ void MedicalSupplyManager::addSupplyStock() {
         default: newSupply.category = "Consumable";
     }
     
-    // 4. QUANTITY
+    // Quantity input with validation
     cout << "\n--------------------------------------------------------------------\n";
     cout << "4. QUANTITY\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "Enter quantity: ";
-    cin >> newSupply.quantity;
-    cin.ignore();
+    while (!(cin >> newSupply.quantity)) {
+        cout << "[ERROR] Please enter a valid number: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
-    // 5. BATCH NUMBER - Auto-generate with custom option
+    // Batch number input
     cout << "\n5. BATCH NUMBER\n";
     cout << "-----------------------------------------------------------------------\n";
     
     stringstream ssBatch;
-    ssBatch << "B" << setfill('0') << setw(4) << (2100 + top + 1);
+    ssBatch << "B" << setfill('0') << setw(4) << (2100 + getCount());
     string nextBatch = ssBatch.str();
     
     cout << "Suggested Batch: " << nextBatch << "\n";
@@ -153,7 +176,7 @@ void MedicalSupplyManager::addSupplyStock() {
     cout << "  2. Enter custom batch number\n";
     cout << "Your choice: ";
     cin >> choice;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
     if (choice == 1) {
         newSupply.batchNumber = nextBatch;
@@ -161,18 +184,18 @@ void MedicalSupplyManager::addSupplyStock() {
         cout << "Enter batch number (format: B2100, B2101, etc.): ";
         getline(cin, newSupply.batchNumber);
     }
-    
-    // 6. DATE ADDED
+
+    // Date input
     cout << "\n--------------------------------------------------------------------\n";
     cout << "6. DATE ADDED\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "Enter date added (format: YYYY-MM-DD, e.g., 2025-10-31): ";
     getline(cin, newSupply.dateAdded);
     
-    // 7. STATUS - Predefined options
+    // Status selection
     cout << "\n--------------------------------------------------------------------\n";
     cout << "7. STATUS\n";
-        cout << "-----------------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "Select current status:\n";
     cout << "  1. In Stock (Ready for Use)\n";
     cout << "  2. Low Stock - Reorder Soon\n";
@@ -184,7 +207,7 @@ void MedicalSupplyManager::addSupplyStock() {
     cout << "  8. Restocking in Progress\n";
     cout << "Your choice: ";
     cin >> choice;
-    
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     switch (choice) {
         case 1: newSupply.status = "In Stock (Ready for Use)"; break;
         case 2: newSupply.status = "Low Stock - Reorder Soon"; break;
@@ -197,42 +220,34 @@ void MedicalSupplyManager::addSupplyStock() {
         default: newSupply.status = "In Stock (Ready for Use)";
     }
 
-    // Push to stack (LIFO - Last In, First Out)
-    top++;
-    supplies[top] = newSupply;
+    // Add supply to stack
+    addSupplyStock_Engine(newSupply);
 
     cout << "\n[SUCCESS] Supply added to stock!\n";
     cout << "-----------------------------------------------------------------------\n";
-    cout << "  Supply ID     : " << newSupply.supplyID << "\n";
-    cout << "  Item Name     : " << newSupply.itemName << "\n";
-    cout << "  Category      : " << newSupply.category << "\n";
-    cout << "  Quantity      : " << newSupply.quantity << "\n";
-    cout << "  Batch Number  : " << newSupply.batchNumber << "\n";
-    cout << "  Stack Position: " << (top + 1) << " (Most Recent)\n";
+    cout << "  Stack Position: " << getCount() << " (Most Recent)\n";
     cout << "-----------------------------------------------------------------------\n";
     cout << "\n[INFO] This supply will be used FIRST (LIFO - Last In, First Out)\n";
     
-    // Auto-save to CSV
     saveToCSV("Medical_Supply_Manager_Dataset.csv");
 }
 
-// Function 2: Use 'Last Added' Supply (Pop from stack - LIFO)
+// Remove most recently added supply (LIFO pop)
 void MedicalSupplyManager::useLastAddedSupply() {
     if (isEmpty()) {
         cout << "\n[ERROR] No supplies available in stock.\n";
         return;
     }
 
-    // Get the top supply (most recently added)
-    MedicalSupply usedSupply = supplies[top];
+    Node* temp = top;
+    MedicalSupply usedSupply = top->data;
     
+    // Display supply to be used
     cout << "\n";
     cout << "=======================================================================\n";
-    cout << "                      USE LAST ADDED SUPPLY (LIFO)                     \n";
+    cout << "                  USE LAST ADDED SUPPLY (LIFO)                         \n";
     cout << "=======================================================================\n";
-    cout << "\n";
-    
-    cout << "Retrieving the MOST RECENTLY added supply:\n";
+    cout << "\nRetrieving the MOST RECENTLY added supply:\n";
     cout << "----------------------------------------------------------------------\n";
     cout << "  Supply ID    : " << usedSupply.supplyID << "\n";
     cout << "  Item Name    : " << usedSupply.itemName << "\n";
@@ -247,34 +262,36 @@ void MedicalSupplyManager::useLastAddedSupply() {
     char confirm;
     cout << "\nUse this supply? (Y/N): ";
     cin >> confirm;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
     if (confirm == 'Y' || confirm == 'y') {
         // Pop from stack
-        top--;
+        top = top->next;
+        delete temp;
         
         cout << "\n[SUCCESS] Supply used and removed from stock!\n";
         cout << "-----------------------------------------------------------------------\n";
         cout << "  Used Item     : " << usedSupply.itemName << "\n";
         cout << "  Quantity Used : " << usedSupply.quantity << "\n";
-        cout << "  Remaining Items in Stock: " << (top + 1) << "\n";
+        cout << "  Remaining Items in Stock: " << getCount() << "\n";
         cout << "-----------------------------------------------------------------------\n";
         
+        // Show next supply in queue
         if (!isEmpty()) {
             cout << "\n[INFO] Next supply to be used:\n";
-            cout << "       " << supplies[top].itemName 
-                 << " (ID: " << supplies[top].supplyID << ")\n";
+            cout << "        " << top->data.itemName 
+                 << " (ID: " << top->data.supplyID << ")\n";
         } else {
             cout << "\n[WARNING] Stock is now empty! Please add more supplies.\n";
         }
         
-        // Auto-save to CSV
         saveToCSV("Medical_Supply_Manager_Dataset.csv");
     } else {
         cout << "\n[CANCELLED] Supply usage cancelled.\n";
     }
 }
 
-// Function 3: View Current Supplies (Display all supplies in stack)
+// Display all supplies in stack order
 void MedicalSupplyManager::viewCurrentSupplies() {
     if (isEmpty()) {
         cout << "\n[INFO] No supplies currently in stock.\n";
@@ -283,84 +300,90 @@ void MedicalSupplyManager::viewCurrentSupplies() {
 
     cout << "\n";
     cout << "=======================================================================\n";
-    cout << "                   CURRENT SUPPLY INVENTORY (LIFO Order)                \n";
+    cout << "             CURRENT SUPPLY INVENTORY (LIFO Order)                     \n";
     cout << "=======================================================================\n";
-    cout << "\n";
-    cout << "Total Supplies in Stock: " << (top + 1) << "\n";
+    cout << "\nTotal Supplies in Stock: " << getCount() << "\n";
     cout << "Note: Items are shown from MOST RECENT (top) to OLDEST (bottom)\n";
     cout << "-----------------------------------------------------------------------\n\n";
 
-    // Display from top to bottom (LIFO order)
-    for (int i = top; i >= 0; i--) {
-        if (i == top) {
+    Node* current = top;
+    int position = 1;
+    
+    while (current != nullptr) {
+        if (current == top) {
             cout << ">>> NEXT TO BE USED (TOP OF STACK) <<<\n";
-        } else if (i == 0) {
-            cout << "\n--- OLDEST ITEM (BOTTOM OF STACK) ---\n";
         }
         
-        cout << "Position " << (i + 1) << " (Stack Level " << (top - i + 1) << " from top):\n";
-        cout << "  Supply ID    : " << supplies[i].supplyID << "\n";
-        cout << "  Item Name    : " << supplies[i].itemName << "\n";
-        cout << "  Category     : " << supplies[i].category << "\n";
-        cout << "  Quantity     : " << supplies[i].quantity << "\n";
-        cout << "  Batch Number : " << supplies[i].batchNumber << "\n";
-        cout << "  Date Added   : " << supplies[i].dateAdded << "\n";
-        cout << "  Status       : " << supplies[i].status << "\n";
+        // Display current node data
+        cout << "Position " << position << " (Stack Level " << position << " from top):\n";
+        cout << "  Supply ID    : " << current->data.supplyID << "\n";
+        cout << "  Item Name    : " << current->data.itemName << "\n";
+        cout << "  Category     : " << current->data.category << "\n";
+        cout << "  Quantity     : " << current->data.quantity << "\n";
+        cout << "  Batch Number : " << current->data.batchNumber << "\n";
+        cout << "  Date Added   : " << current->data.dateAdded << "\n";
+        cout << "  Status       : " << current->data.status << "\n";
         cout << "-----------------------------------------------------------------------\n";
+
+        if (current->next == nullptr && position > 1) {
+             cout << "\n--- OLDEST ITEM (BOTTOM OF STACK) ---\n";
+        }
+        
+        // Move to next node
+        current = current->next;
+        position++;
     }
     cout << "\n";
 }
 
-// Load data from CSV file
+// Load supplies from CSV file
 void MedicalSupplyManager::loadFromCSV(string filename) {
     ifstream file(filename);
     if (!file.is_open()) {
         cout << "\n[WARNING] Could not open " << filename << "\n";
-        cout << "Please ensure the file exists in the same directory.\n";
         return;
     }
 
-    // Clear existing data before loading
-    top = -1;
+    // Clear existing stack
+    while (!isEmpty()) {
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+    }
 
     string line;
-    getline(file, line); // Skip header line
+    getline(file, line); // Skip header
 
     int loadedCount = 0;
-    while (getline(file, line) && !isFull()) {
+    while (getline(file, line)) {
         if (line.empty()) continue;
         
         stringstream ss(line);
         MedicalSupply supply;
         
+        // Parse CSV fields
         getline(ss, supply.supplyID, ',');
         getline(ss, supply.itemName, ',');
         getline(ss, supply.category, ',');
         
         string qtyStr;
         getline(ss, qtyStr, ',');
-        try {
-            supply.quantity = stoi(qtyStr);
-        } catch (...) {
-            supply.quantity = 0;
-        }
+        try { supply.quantity = stoi(qtyStr); } catch (...) { supply.quantity = 0; }
         
         getline(ss, supply.batchNumber, ',');
         getline(ss, supply.dateAdded, ',');
         getline(ss, supply.status);
 
-        // Push to stack
-        top++;
-        supplies[top] = supply;
+        // Add to stack
+        addSupplyStock_Engine(supply);
         loadedCount++;
     }
 
     file.close();
     cout << "\n[SUCCESS] Loaded " << loadedCount << " supplies from " << filename << "\n";
-    cout << "[INFO] Supplies loaded in LIFO order - most recent at top of stack.\n";
 }
 
-// Save data to CSV file
+// Save current stack to CSV file
 void MedicalSupplyManager::saveToCSV(string filename) {
     ofstream file(filename);
     if (!file.is_open()) {
@@ -371,42 +394,38 @@ void MedicalSupplyManager::saveToCSV(string filename) {
     // Write CSV header
     file << "Supply ID,Item Name,Category,Quantity,Batch Number,Date Added,Status\n";
 
-    // Write all supplies in reverse order (top to bottom, LIFO order)
-    for (int i = top; i >= 0; i--) {
-        file << supplies[i].supplyID << ","
-             << supplies[i].itemName << ","
-             << supplies[i].category << ","
-             << supplies[i].quantity << ","
-             << supplies[i].batchNumber << ","
-             << supplies[i].dateAdded << ","
-             << supplies[i].status << "\n";
+    // Write all supplies
+    Node* current = top;
+    while (current != nullptr) {
+        file << current->data.supplyID << ","
+             << "\"" << current->data.itemName << "\","
+             << "\"" << current->data.category << "\","
+             << current->data.quantity << ","
+             << "\"" << current->data.batchNumber << "\","
+             << "\"" << current->data.dateAdded << "\","
+             << "\"" << current->data.status << "\"\n";
+        current = current->next;
     }
 
     file.close();
-    cout << "\n[SUCCESS] Saved " << (top + 1) << " supplies to " << filename << "\n";
+    cout << "\n[SUCCESS] Saved " << getCount() << " supplies to " << filename << "\n";
 }
 
-// Get count of supplies
-int MedicalSupplyManager::getCount() {
-    return top + 1;
-}
 
-// Menu function for Medical Supply Manager module
+// Main menu interface for medical supply manager
 void medicalSupplyManagerMenu() {
-    // Create supply manager instance if not exists
+    // Create manager instance if needed
     if (globalSupplyManager == nullptr) {
         globalSupplyManager = new MedicalSupplyManager();
-        // Auto-load data from CSV on first entry
         globalSupplyManager->loadFromCSV("Medical_Supply_Manager_Dataset.csv");
     }
     
     int choice;
-    
     do {
         cout << "\n";
         cout << "=======================================================================\n";
-        cout << "                         MEDICAL SUPPLY MANAGER                       \n";
-        cout << "                           (Stack System - LIFO)                      \n";
+        cout << "                      MEDICAL SUPPLY MANAGER                         \n";
+        cout << "                      (Stack System - LIFO)                          \n";
         cout << "=======================================================================\n";
         cout << "\nOPTIONS:\n";
         cout << "-----------------------------------------------------------------------\n";
@@ -418,8 +437,16 @@ void medicalSupplyManagerMenu() {
         cout << "  0. Return to Main Menu\n";
         cout << "-----------------------------------------------------------------------\n";
         cout << "\nEnter your choice: ";
-        cin >> choice;
+        
+        // Get and validate input
+        while (!(cin >> choice)) {
+            cout << "[ERROR] Invalid choice. Please enter a number: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        // Process menu choice
         switch (choice) {
             case 1:
                 globalSupplyManager->addSupplyStock();
@@ -438,17 +465,13 @@ void medicalSupplyManagerMenu() {
                 break;
             case 0:
                 cout << "\nReturning to Main Menu...\n";
+                // Clean up memory
+                delete globalSupplyManager;
+                globalSupplyManager = nullptr;
                 break;
             default:
                 cout << "\n[ERROR] Invalid choice! Please enter a number between 0-5.\n";
         }
         
-        // Pause before showing menu again (except when exiting)
-        if (choice != 0 && choice >= 1 && choice <= 5) {
-            cout << "\nPress Enter to continue...";
-            cin.ignore();
-            cin.get();
-        }
     } while (choice != 0);
 }
-
