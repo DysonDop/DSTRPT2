@@ -24,6 +24,12 @@
     <ClCompile Include="MedicalSupplyManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EDO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PAC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmbulanceDispatcher.h">
@@ -32,12 +38,24 @@
     <ClInclude Include="MedicalSupplyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EDO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PAC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ambulance_Dispatcher_Dataset.csv">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Medical_Supply_Manager_Dataset.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pac_sample.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="emergency_cases.csv">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

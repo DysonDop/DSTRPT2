@@ -58,18 +58,43 @@ bool PAC::dischargePatient(Patient& out) {
 }
 
 void PAC::viewQueue() const {
-    if (!front_) { 
-        std::cout << "[Info] No patients in queue.\n"; 
-        return; 
+    if (!front_) {
+        std::cout << "[Info] No patients in queue.\n";
+        return;
     }
     std::cout << "----- Patient Admission Queue (FIFO) -----\n";
-    std::cout << "Pos\tID\tName\t\tCondition\tAdmittedAt\n";
+    std::cout << "Pos" << "  ";
+    std::cout << "ID" << "   ";
+    std::cout << "Name" << "              ";
+    std::cout << "Condition" << "         ";
+    std::cout << "AdmittedAt\n";
+    std::cout << "------------------------------------------------------------\n";
+
     int pos = 1;
     for (Node* cur = front_; cur; cur = cur->next, ++pos) {
         const Patient& p = cur->data;
-        std::cout << pos << "\t" << p.id << "\t" << p.name
-                  << "\t\t" << p.conditionType
-                  << "\t\t" << (p.admittedAt.empty() ? "-" : p.admittedAt) << "\n";
+
+        std::cout << pos;
+        for (int i = 0; i < (5 - std::to_string(pos).length()); ++i) {
+            std::cout << " ";
+        }
+
+        std::cout << p.id;
+        for (int i = 0; i < (6 - std::to_string(p.id).length()); ++i) {
+            std::cout << " ";
+        }
+
+        std::cout << p.name;
+        for (int i = 0; i < (18 - p.name.length()); ++i) {
+            std::cout << " ";
+        }
+
+        std::cout << p.conditionType;
+        for (int i = 0; i < (18 - p.conditionType.length()); ++i) {
+            std::cout << " ";
+        }
+
+        std::cout << (p.admittedAt.empty() ? "-" : p.admittedAt) << "\n";
     }
 }
 
@@ -168,13 +193,21 @@ void patientAdmissionClerkMenu() {
     PAC pac;
     int choice = -1;
 
+    std::cout << "\n[Info] Attempting to auto-load 'pac_sample.csv'...\n";
+    if (pac.loadFromCSV("pac_sample.csv")) {
+        std::cout << "[OK] Patient data loaded. " << pac.size() << " patients in queue.\n";
+    }
+    else {
+        std::cout << "[Warn] 'pac_sample.csv' not found. Starting with an empty queue.\n";
+    }
+
     while (true) {
         std::cout << "\n===== Patient Admission Clerk (PAC) =====\n"
                   << "1. Admit Patient\n"
                   << "2. Discharge Earliest Patient\n"
                   << "3. View Patient Queue\n"
-                  << "4. Load from CSV\n"
-                  << "5. Save to CSV\n"
+                  << "4. Reload from CSV (pac_sample.csv)\n"
+                  << "5. Save to CSV (pac_sample.csv)\n"
                   << "0. Return to Main Menu\n"
                   << "Choice: ";
         if (!(std::cin >> choice)) {
@@ -189,14 +222,36 @@ void patientAdmissionClerkMenu() {
         if (choice == 1) {
             int id; 
             std::string name, cond, ts;
-            std::cout << "Enter ID: "; 
-            std::cin >> id;
+            std::cout << "Enter ID: ";
+            while (!(std::cin >> id)) { 
+                std::cout << "[Error] Please enter a valid number for ID: ";
+                std::cin.clear(); // Clear the error flag
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the bad input
+            }
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Enter Name: "; 
-            std::getline(std::cin, name);
-            std::cout << "Enter Condition Type: "; 
-            std::getline(std::cin, cond);
-            std::cout << "Enter AdmittedAt (YYYY-MM-DDThh:mm, optional): "; 
+            while (true) {
+                std::cout << "Enter Name: ";
+                std::getline(std::cin, name);
+
+                if (name.empty()) { // Check if the user just pressed Enter
+                    std::cout << "[Error] Name cannot be blank. Please re-enter.\n";
+                }
+                else {
+                    break; // Good, the name is not empty, exit the loop
+                }
+            }
+            while (true) {
+                std::cout << "Enter Condition Type: ";
+                std::getline(std::cin, cond);
+
+                if (cond.empty()) {
+                    std::cout << "[Error] Condition cannot be blank. Please re-enter.\n";
+                }
+                else {
+                    break;
+                }
+            }
+            std::cout << "Enter Admitted At (YYYY-MM-DDThh:mm, optional): "; 
             std::getline(std::cin, ts);
             pac.admitPatient(id, name, cond, ts);
             std::cout << "[OK] Patient admitted. Size = " << pac.size() << "\n";
@@ -213,22 +268,22 @@ void patientAdmissionClerkMenu() {
             pac.viewQueue();
             pause_console();
         } else if (choice == 4) {
-            std::string file;
-            std::cout << "CSV to load: "; 
-            std::getline(std::cin, file);
-            if (pac.loadFromCSV(file)) 
-                std::cout << "[OK] Loaded.\n";
-            else 
-                std::cout << "[Error] Could not load.\n";
+            std::string file = "pac_sample.csv";
+            std::cout << "[Info] Reloading all data from '" << file << "'...\n";
+
+            if (pac.loadFromCSV(file))
+                std::cout << "[OK] Reloaded. " << pac.size() << " patients in queue.\n";
+            else
+                std::cout << "[Error] Could not load '" << file << "'.\n";
             pause_console();
-        } else if (choice == 5) {
-            std::string file;
-            std::cout << "CSV to save: "; 
-            std::getline(std::cin, file);
-            if (pac.saveToCSV(file)) 
-                std::cout << "[OK] Saved.\n";
-            else 
-                std::cout << "[Error] Could not save.\n";
+        }else if (choice == 5) {
+            std::string file = "pac_sample.csv"; // Hard-code the filename
+            std::cout << "[Info] Saving current queue to '" << file << "'...\n";
+
+            if (pac.saveToCSV(file))
+                std::cout << "[OK] Saved. " << pac.size() << " patients in queue.\n";
+            else
+                std::cout << "[Error] Could not save to '" << file << "'.\n";
             pause_console();
         }
     }
