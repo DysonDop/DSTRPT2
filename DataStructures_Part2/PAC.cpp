@@ -64,7 +64,7 @@ void PAC::viewQueue() const {
     }
     std::cout << "----- Patient Admission Queue (FIFO) -----\n";
     std::cout << "Pos" << "  ";
-    std::cout << "ID" << "   ";
+    std::cout << "ID" << "    ";
     std::cout << "Name" << "              ";
     std::cout << "Condition" << "         ";
     std::cout << "AdmittedAt\n";
@@ -220,15 +220,29 @@ void patientAdmissionClerkMenu() {
         if (choice == 0) break;
 
         if (choice == 1) {
-            int id; 
+            int id;
             std::string name, cond, ts;
-            std::cout << "Enter ID: ";
-            while (!(std::cin >> id)) { 
-                std::cout << "[Error] Please enter a valid number for ID: ";
-                std::cin.clear(); // Clear the error flag
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the bad input
+            std::string inputLine;
+
+            // --- 1. BULLETPROOF VALIDATED ID INPUT ---
+            while (true) {
+                std::cout << "Enter ID: "; // Ask for ID INSIDE the loop
+                std::getline(std::cin, inputLine); // Read the ENTIRE line
+
+                std::stringstream ss(inputLine);
+                char extraChar;
+
+                if (ss >> id && !(ss >> extraChar)) {
+                    // Success! It's a valid integer AND nothing else is on the line.
+                    break;
+                }
+                else {
+                    // Failed.
+                    std::cout << "[Error] Invalid input. Please enter ONLY a number for the ID.\n";
+                }
             }
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            // --- 2. VALIDATED NAME INPUT ---
             while (true) {
                 std::cout << "Enter Name: ";
                 std::getline(std::cin, name);
@@ -240,6 +254,8 @@ void patientAdmissionClerkMenu() {
                     break; // Good, the name is not empty, exit the loop
                 }
             }
+
+            // --- 3. VALIDATED CONDITION INPUT ---
             while (true) {
                 std::cout << "Enter Condition Type: ";
                 std::getline(std::cin, cond);
@@ -251,40 +267,78 @@ void patientAdmissionClerkMenu() {
                     break;
                 }
             }
-            std::cout << "Enter Admitted At (YYYY-MM-DDThh:mm, optional): "; 
+
+            // --- 4. OPTIONAL TIMESTAMP ---
+            std::cout << "Enter Admitted At (YYYY-MM-DDThh:mm, optional): ";
             std::getline(std::cin, ts);
+
+            // --- 5. ADMIT THE PATIENT ---
             pac.admitPatient(id, name, cond, ts);
             std::cout << "[OK] Patient admitted. Size = " << pac.size() << "\n";
             pause_console();
         } else if (choice == 2) {
+
             PAC::Patient out;
+
             if (pac.dischargePatient(out)) {
+
                 std::cout << "[OK] Discharged: " << out.id << " - " << out.name << "\n";
-            } else {
-                std::cout << "[Warn] Queue is empty.\n";
+
             }
+            else {
+
+                std::cout << "[Warn] Queue is empty.\n";
+
+            }
+
             pause_console();
-        } else if (choice == 3) {
+
+        }
+        else if (choice == 3) {
+
             pac.viewQueue();
+
             pause_console();
-        } else if (choice == 4) {
+
+        }
+        else if (choice == 4) {
+
             std::string file = "pac_sample.csv";
+
             std::cout << "[Info] Reloading all data from '" << file << "'...\n";
 
+
+
             if (pac.loadFromCSV(file))
+
                 std::cout << "[OK] Reloaded. " << pac.size() << " patients in queue.\n";
+
             else
+
                 std::cout << "[Error] Could not load '" << file << "'.\n";
+
             pause_console();
-        }else if (choice == 5) {
+
+        }
+        else if (choice == 5) {
+
             std::string file = "pac_sample.csv"; // Hard-code the filename
+
             std::cout << "[Info] Saving current queue to '" << file << "'...\n";
 
+
+
             if (pac.saveToCSV(file))
+
                 std::cout << "[OK] Saved. " << pac.size() << " patients in queue.\n";
+
             else
+
                 std::cout << "[Error] Could not save to '" << file << "'.\n";
+
             pause_console();
+
         }
+
     }
 }
