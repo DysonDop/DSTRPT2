@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/Christabel/OneDrive - Asia Pacific University/Documents/GitHub/DSTRPT2/DataStructures_Part2",
+      "program": "c:/Users/Christabel/OneDrive - Asia Pacific University/Documents/GitHub/DSTRPT2/DataStructures_Part2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

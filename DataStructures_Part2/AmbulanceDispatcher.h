@@ -42,7 +42,7 @@ public:
     // Function 3: Display Ambulance Schedule (Show all in rotation order)
     void displayAmbulanceSchedule();
 
-    // Function 4: Search Ambulance (by ID or Driver Name)
+    // Function 4: Search Ambulance (by Driver Name - shows all matches)
     void searchAmbulance();
     int findAmbulanceIndexByID(string id);
     int findAmbulanceIndexByDriver(string driverName);

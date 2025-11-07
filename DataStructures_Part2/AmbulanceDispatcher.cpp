@@ -163,8 +163,13 @@ void AmbulanceDispatcher::registerAmbulance() {
     // 4. LAST DISPATCH TIME
     cout << "\n4. LAST DISPATCH TIME\n";
     cout << "-----------------------------------------------------------------------\n";
-    cout << "Enter last dispatch time (format: HH:MM, e.g., 08:30): ";
+    cout << "Enter last dispatch time (format: HH:MM): ";
     getline(cin, newAmb.lastDispatchTime);
+    
+    // Simple validation - just check if it contains a colon
+    if (!newAmb.lastDispatchTime.empty() && newAmb.lastDispatchTime.find(":") == string::npos) {
+        cout << "\n[WARNING] Time format should include ':' (e.g., 5:50). Using input as is.\n";
+    }
     
     // 5. LOCATION - Predefined stations
     cout << "\n5. CURRENT LOCATION\n";
@@ -255,9 +260,11 @@ void AmbulanceDispatcher::rotateAmbulanceShift() {
     cout << "=======================================================================\n";
     cout << "\n";
     cout << "Ambulance completing shift:\n";
+    cout << "-----------------------------------------------------------------------\n";
     cout << "  ID: " << currentAmb.ambulanceID << "\n";
     cout << "  Driver: " << currentAmb.driverName << "\n";
     cout << "  Previous Status: " << currentAmb.status << "\n";
+    cout << "-----------------------------------------------------------------------\n";
 
     // Remove from front
     front = (front + 1) % MAX_SIZE;
@@ -274,9 +281,11 @@ void AmbulanceDispatcher::rotateAmbulanceShift() {
     
     if (!isEmpty()) {
         cout << "\nNext ambulance on duty:\n";
+        cout << "-----------------------------------------------------------------------\n";
         cout << "  ID: " << ambulances[front].ambulanceID << "\n";
         cout << "  Driver: " << ambulances[front].driverName << "\n";
         cout << "  Status: " << ambulances[front].status << "\n";
+        cout << "-----------------------------------------------------------------------\n";
     }
     
     // Auto-save to CSV
@@ -435,156 +444,88 @@ int AmbulanceDispatcher::findAmbulanceIndexByDriver(string driverName) {
     return -1; // Not found
 }
 
-// Function 4: Search Ambulance (by ID or Driver Name)
+// Function 4: Search Ambulance by Driver Name (shows all matches)
 void AmbulanceDispatcher::searchAmbulance() {
     if (isEmpty()) {
         cout << "\n[ERROR] No ambulances in the queue to search.\n";
         return;
     }
 
-    int choice;
     cout << "\n";
     cout << "=======================================================================\n";
     cout << "                          SEARCH AMBULANCE                             \n";
     cout << "=======================================================================\n";
-    cout << "\nSearch by:\n";
-    cout << "  1. Ambulance ID\n";
-    cout << "  2. Driver Name\n";
-    cout << "  0. Cancel\n";
-    cout << "Your choice: ";
+    cout << "\nEnter driver name to search (or press Enter to cancel): ";
     
-    if (!(cin >> choice)) {
-        cin.clear();
-        cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
-        cout << "\n[ERROR] Invalid input! Please enter a number.\n";
-        return;
+    string searchName;
+    getline(cin, searchName);
+    
+    // Trim whitespace from the input
+    while (!searchName.empty() && (searchName[0] == ' ' || searchName[0] == '\t')) {
+        searchName = searchName.substr(1);
     }
-    cin.ignore();
-
-    if (choice == 0) {
+    while (!searchName.empty() && (searchName[searchName.length() - 1] == ' ' || searchName[searchName.length() - 1] == '\t')) {
+        searchName = searchName.substr(0, searchName.length() - 1);
+    }
+    
+    if (searchName.empty()) {
         cout << "\n[CANCELLED] Search cancelled.\n";
         return;
     }
-
-    int foundIndex = -1;
-
-    if (choice == 1) {
-        cout << "\nAvailable Ambulance IDs:\n";
-        cout << "-----------------------------------------------------------------------\n";
-        int index = front;
-        int optionNum = 1;
-        int indices[MAX_SIZE];
-        
-        for (int i = 0; i < count; i++) {
-            indices[optionNum - 1] = index;
-            cout << "  " << optionNum << ". " << ambulances[index].ambulanceID 
-                 << " - " << ambulances[index].driverName << "\n";
-            optionNum++;
-            index = (index + 1) % MAX_SIZE;
-        }
-        cout << "  0. Cancel\n";
-        cout << "-----------------------------------------------------------------------\n";
-        cout << "Select Ambulance ID: ";
-        
-        int idChoice;
-        if (!(cin >> idChoice)) {
-            cin.clear();
-            cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
-            cout << "\n[ERROR] Invalid input! Please enter a number.\n";
-            return;
-        }
-        cin.ignore();
-        
-        if (idChoice == 0) {
-            cout << "\n[CANCELLED] Search cancelled.\n";
-            return;
-        }
-        
-        if (idChoice < 1 || idChoice > count) {
-            cout << "\n[ERROR] Invalid choice! Please select a number between 1-" << count << ".\n";
-            return;
-        }
-        
-        foundIndex = indices[idChoice - 1];
-        
-    } else if (choice == 2) {
-        cout << "\nAvailable Drivers:\n";
-        cout << "-----------------------------------------------------------------------\n";
-        int index = front;
-        int optionNum = 1;
-        string drivers[MAX_SIZE];
-        int indices[MAX_SIZE];
-        int driverCount = 0;
-        
-        for (int i = 0; i < count; i++) {
-            bool found = false;
-            for (int j = 0; j < driverCount; j++) {
-                if (drivers[j] == ambulances[index].driverName) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                drivers[driverCount] = ambulances[index].driverName;
-                indices[driverCount] = index;
-                cout << "  " << (driverCount + 1) << ". " << ambulances[index].driverName 
-                     << " (" << ambulances[index].ambulanceID << ")\n";
-                driverCount++;
-            }
-            index = (index + 1) % MAX_SIZE;
-        }
-        cout << "  0. Cancel\n";
-        cout << "-----------------------------------------------------------------------\n";
-        cout << "Select Driver: ";
-        
-        int driverChoice;
-        if (!(cin >> driverChoice)) {
-            cin.clear();
-            cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
-            cout << "\n[ERROR] Invalid input! Please enter a number.\n";
-            return;
-        }
-        cin.ignore();
-        
-        if (driverChoice == 0) {
-            cout << "\n[CANCELLED] Search cancelled.\n";
-            return;
-        }
-        
-        if (driverChoice < 1 || driverChoice > driverCount) {
-            cout << "\n[ERROR] Invalid choice! Please select a number between 1-" << driverCount << ".\n";
-            return;
-        }
-        
-        foundIndex = indices[driverChoice - 1];
-        
-    } else {
-        cout << "\n[ERROR] Invalid choice! Please select 1, 2, or 0.\n";
-        return;
-    }
-
-    if (foundIndex == -1) {
-        cout << "\n[ERROR] Ambulance not found in the queue.\n";
-        return;
-    }
-
-    cout << "\n[SUCCESS] Ambulance found!\n";
-    cout << "-----------------------------------------------------------------------\n";
-    cout << "  Ambulance ID  : " << ambulances[foundIndex].ambulanceID << "\n";
-    cout << "  Driver        : " << ambulances[foundIndex].driverName << "\n";
-    cout << "  Status        : " << ambulances[foundIndex].status << "\n";
-    cout << "  Last Dispatch : " << ambulances[foundIndex].lastDispatchTime << "\n";
-    cout << "  Location      : " << ambulances[foundIndex].location << "\n";
-    cout << "  Distance      : " << ambulances[foundIndex].distanceCovered << " km\n";
     
-    int position = 0;
-    int tempIndex = front;
-    while (tempIndex != foundIndex && position < count) {
-        position++;
-        tempIndex = (tempIndex + 1) % MAX_SIZE;
+    // Convert search name to lowercase for case-insensitive search
+    string searchLower = searchName;
+    for (size_t i = 0; i < searchLower.length(); i++) {
+        searchLower[i] = tolower(searchLower[i]);
     }
-    cout << "  Queue Position: " << (position + 1) << "\n";
-    cout << "-----------------------------------------------------------------------\n";
+    
+    // Find all matching ambulances
+    int foundCount = 0;
+    int foundIndices[MAX_SIZE];
+    int index = front;
+    
+    for (int i = 0; i < count; i++) {
+        string driverLower = ambulances[index].driverName;
+        for (size_t j = 0; j < driverLower.length(); j++) {
+            driverLower[j] = tolower(driverLower[j]);
+        }
+        
+        // Check if search name is contained in driver name (partial match)
+        if (driverLower.find(searchLower) != string::npos) {
+            foundIndices[foundCount] = index;
+            foundCount++;
+        }
+        index = (index + 1) % MAX_SIZE;
+    }
+    
+    if (foundCount == 0) {
+        cout << "\n[INFO] No ambulances found with driver name containing: \"" << searchName << "\"\n";
+        return;
+    }
+    
+    cout << "\n[SUCCESS] Found " << foundCount << " ambulance(s)!\n";
+    cout << "=======================================================================\n";
+    
+    for (int i = 0; i < foundCount; i++) {
+        int foundIndex = foundIndices[i];
+        int position = 0;
+        int tempIndex = front;
+        while (tempIndex != foundIndex && position < count) {
+            position++;
+            tempIndex = (tempIndex + 1) % MAX_SIZE;
+        }
+        
+        cout << "\nResult " << (i + 1) << ":\n";
+        cout << "-----------------------------------------------------------------------\n";
+        cout << "  Ambulance ID  : " << ambulances[foundIndex].ambulanceID << "\n";
+        cout << "  Driver        : " << ambulances[foundIndex].driverName << "\n";
+        cout << "  Status        : " << ambulances[foundIndex].status << "\n";
+        cout << "  Last Dispatch : " << ambulances[foundIndex].lastDispatchTime << "\n";
+        cout << "  Location      : " << ambulances[foundIndex].location << "\n";
+        cout << "  Distance      : " << ambulances[foundIndex].distanceCovered << " km\n";
+        cout << "  Queue Position: " << (position + 1) << "\n";
+        cout << "-----------------------------------------------------------------------\n";
+    }
 }
 
 // Function 5: Update Ambulance Status
@@ -708,27 +649,22 @@ void AmbulanceDispatcher::updateAmbulanceDetails() {
             break;
         }
         case 2: {
-            cout << "\nEnter new last dispatch time (format: HH:MM, e.g., 14:30): ";
+            cout << "\nEnter new last dispatch time (format: HH:MM, e.g., 08:30 or 5:50): ";
             string timeInput;
             getline(cin, timeInput);
             
-            if (timeInput.length() == 5 && timeInput[2] == ':' &&
-                isdigit(timeInput[0]) && isdigit(timeInput[1]) &&
-                isdigit(timeInput[3]) && isdigit(timeInput[4])) {
-                int hour = stoi(timeInput.substr(0, 2));
-                int minute = stoi(timeInput.substr(3, 2));
-                if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59) {
-                    ambulances[index].lastDispatchTime = timeInput;
-                } else {
-                    cout << "\n[WARNING] Invalid time! Hours must be 0-23, minutes must be 0-59.\n";
-                    cout << "Time not updated. Please try again.\n";
-                    return;
-                }
-            } else {
-                cout << "\n[WARNING] Invalid time format! Expected HH:MM (e.g., 14:30).\n";
-                cout << "Time not updated. Please try again.\n";
+            if (timeInput.empty()) {
+                cout << "\n[WARNING] Time cannot be empty! Time not updated.\n";
                 return;
             }
+            
+            // Simple validation - just check if it contains a colon
+            if (timeInput.find(":") == string::npos) {
+                cout << "\n[WARNING] Time format should include ':' (e.g., 5:50). Time not updated.\n";
+                return;
+            }
+            
+            ambulances[index].lastDispatchTime = timeInput;
             break;
         }
         case 3: {
@@ -1182,6 +1118,7 @@ void ambulanceDispatcherMenu() {
                 globalDispatcher->displayAmbulanceSchedule();
                 break;
             case 4:
+                cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
                 globalDispatcher->searchAmbulance();
                 break;
             case 5:
@@ -1194,76 +1131,129 @@ void ambulanceDispatcherMenu() {
                 globalDispatcher->displayQueueStatistics();
                 break;
             case 8: {
-                int filterChoice;
+                int filterTypeChoice;
                 cout << "\n";
                 cout << "=======================================================================\n";
                 cout << "                        FILTER DISPLAY OPTIONS                        \n";
                 cout << "=======================================================================\n";
                 cout << "\nFilter by:\n";
-                cout << "  1. Status (Available at Base)\n";
-                cout << "  2. Status (Dispatched to Scene)\n";
-                cout << "  3. Status (Transporting Patient)\n";
-                cout << "  4. Status (At Hospital - Offloading)\n";
-                cout << "  5. Status (Under Maintenance)\n";
-                cout << "  6. Status (Refuelling / Restocking)\n";
-                cout << "  7. Location (Hospital HQ - Emergency Wing)\n";
-                cout << "  8. Location (Bandar Klang Medical Station)\n";
-                cout << "  9. Location (Bukit Raja Response Unit)\n";
-                cout << " 10. Location (Port Klang Substation)\n";
-                cout << " 11. Location (Kapar Health Post)\n";
-                cout << " 12. Location (Taman Sentosa Medical Base)\n";
+                cout << "  1. Status\n";
+                cout << "  2. Location\n";
                 cout << "  0. Cancel\n";
                 cout << "Your choice: ";
-                if (!(cin >> filterChoice)) {
+                if (!(cin >> filterTypeChoice)) {
                     cin.clear();
                     cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
                     cout << "\n[ERROR] Invalid input! Please enter a number.\n";
-                    filterChoice = 0;
+                    filterTypeChoice = 0;
                 }
                 cin.ignore();
                 
-                switch (filterChoice) {
-                    case 1:
-                        globalDispatcher->displayByStatus("Available at Base");
+                if (filterTypeChoice == 0) {
+                    cout << "\n[CANCELLED] Filter cancelled.\n";
+                    break;
+                }
+                
+                if (filterTypeChoice == 1) {
+                    // Filter by Status
+                    int statusChoice;
+                    cout << "\n";
+                    cout << "=======================================================================\n";
+                    cout << "                        FILTER BY STATUS                               \n";
+                    cout << "=======================================================================\n";
+                    cout << "\nSelect status:\n";
+                    cout << "  1. Available at Base\n";
+                    cout << "  2. Dispatched to Scene\n";
+                    cout << "  3. Transporting Patient\n";
+                    cout << "  4. At Hospital (Offloading)\n";
+                    cout << "  5. Under Maintenance\n";
+                    cout << "  6. Refuelling / Restocking\n";
+                    cout << "  0. Cancel\n";
+                    cout << "Your choice: ";
+                    if (!(cin >> statusChoice)) {
+                        cin.clear();
+                        cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
+                        cout << "\n[ERROR] Invalid input! Please enter a number.\n";
                         break;
-                    case 2:
-                        globalDispatcher->displayByStatus("Dispatched to Scene");
+                    }
+                    cin.ignore();
+                    
+                    switch (statusChoice) {
+                        case 1:
+                            globalDispatcher->displayByStatus("Available at Base");
+                            break;
+                        case 2:
+                            globalDispatcher->displayByStatus("Dispatched to Scene");
+                            break;
+                        case 3:
+                            globalDispatcher->displayByStatus("Transporting Patient");
+                            break;
+                        case 4:
+                            globalDispatcher->displayByStatus("At Hospital (Offloading)");
+                            break;
+                        case 5:
+                            globalDispatcher->displayByStatus("Under Maintenance");
+                            break;
+                        case 6:
+                            globalDispatcher->displayByStatus("Refuelling / Restocking");
+                            break;
+                        case 0:
+                            cout << "\n[CANCELLED] Filter cancelled.\n";
+                            break;
+                        default:
+                            cout << "\n[ERROR] Invalid status choice!\n";
+                    }
+                } else if (filterTypeChoice == 2) {
+                    // Filter by Location
+                    int locationChoice;
+                    cout << "\n";
+                    cout << "=======================================================================\n";
+                    cout << "                        FILTER BY LOCATION                             \n";
+                    cout << "=======================================================================\n";
+                    cout << "\nSelect location:\n";
+                    cout << "  1. Hospital HQ - Emergency Wing\n";
+                    cout << "  2. Bandar Klang Medical Station\n";
+                    cout << "  3. Bukit Raja Response Unit\n";
+                    cout << "  4. Port Klang Substation\n";
+                    cout << "  5. Kapar Health Post\n";
+                    cout << "  6. Taman Sentosa Medical Base\n";
+                    cout << "  0. Cancel\n";
+                    cout << "Your choice: ";
+                    if (!(cin >> locationChoice)) {
+                        cin.clear();
+                        cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
+                        cout << "\n[ERROR] Invalid input! Please enter a number.\n";
                         break;
-                    case 3:
-                        globalDispatcher->displayByStatus("Transporting Patient");
-                        break;
-                    case 4:
-                        globalDispatcher->displayByStatus("At Hospital (Offloading)");
-                        break;
-                    case 5:
-                        globalDispatcher->displayByStatus("Under Maintenance");
-                        break;
-                    case 6:
-                        globalDispatcher->displayByStatus("Refuelling / Restocking");
-                        break;
-                    case 7:
-                        globalDispatcher->displayByLocation("Hospital HQ - Emergency Wing");
-                        break;
-                    case 8:
-                        globalDispatcher->displayByLocation("Bandar Klang Medical Station");
-                        break;
-                    case 9:
-                        globalDispatcher->displayByLocation("Bukit Raja Response Unit");
-                        break;
-                    case 10:
-                        globalDispatcher->displayByLocation("Port Klang Substation");
-                        break;
-                    case 11:
-                        globalDispatcher->displayByLocation("Kapar Health Post");
-                        break;
-                    case 12:
-                        globalDispatcher->displayByLocation("Taman Sentosa Medical Base");
-                        break;
-                    case 0:
-                        cout << "\n[CANCELLED] Filter cancelled.\n";
-                        break;
-                    default:
-                        cout << "\n[ERROR] Invalid filter choice!\n";
+                    }
+                    cin.ignore();
+                    
+                    switch (locationChoice) {
+                        case 1:
+                            globalDispatcher->displayByLocation("Hospital HQ - Emergency Wing");
+                            break;
+                        case 2:
+                            globalDispatcher->displayByLocation("Bandar Klang Medical Station");
+                            break;
+                        case 3:
+                            globalDispatcher->displayByLocation("Bukit Raja Response Unit");
+                            break;
+                        case 4:
+                            globalDispatcher->displayByLocation("Port Klang Substation");
+                            break;
+                        case 5:
+                            globalDispatcher->displayByLocation("Kapar Health Post");
+                            break;
+                        case 6:
+                            globalDispatcher->displayByLocation("Taman Sentosa Medical Base");
+                            break;
+                        case 0:
+                            cout << "\n[CANCELLED] Filter cancelled.\n";
+                            break;
+                        default:
+                            cout << "\n[ERROR] Invalid location choice!\n";
+                    }
+                } else {
+                    cout << "\n[ERROR] Invalid filter type choice! Please select 1, 2, or 0.\n";
                 }
                 break;
             }
