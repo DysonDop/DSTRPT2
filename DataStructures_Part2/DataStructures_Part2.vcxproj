@@ -137,7 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ambulance_Dispatcher_Dataset.csv" />
+    <None Include="emergency_cases.csv" />
     <None Include="Medical_Supply_Manager_Dataset.csv" />
+    <None Include="pac_sample.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

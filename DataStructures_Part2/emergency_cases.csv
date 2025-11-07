@@ -1,51 +1,51 @@
-CaseID,PatientName,EmergencyType,PriorityLevel,ArrivalTime,Status,AssignedDoctor
-1001,Ravi Kumar,Fracture,5,2025-10-10 10:00,Processing,Dr. Rahman
-1002,Melissa Chan,Head Trauma,4,2025-10-10 15:48,Processing,Dr. Aisha
-1003,Farah Zain,Asthma Attack,1,2025-10-10 11:41,Resolved,Dr. Lim
-1004,Liyana Hassan,Stroke,2,2025-10-14 05:15,Processing,Dr. Chan
-1005,Suresh Raj,Fracture,3,2025-10-11 03:11,Resolved,Dr. Lee
-1006,Ahmad Rahim,Severe Burns,4,2025-10-16 08:53,Resolved,Dr. Lee
-1007,Ahmad Rahim,Fracture,3,2025-10-11 15:54,Resolved,Dr. Aisha
-1008,David Lee,Fracture,1,2025-10-13 15:22,Pending,Dr. Lee
-1009,Noraini Osman,Bleeding,1,2025-10-14 13:57,Pending,Dr. Wong
-1010,Noraini Osman,Allergic Reaction,5,2025-10-12 16:22,Processing,Dr. Kumar
-1011,Suresh Raj,Stroke,1,2025-10-10 17:31,Resolved,Dr. Rahman
-1012,Aisha Ali,Cardiac Arrest,2,2025-10-15 10:45,Pending,Dr. Wong
-1013,Wei Ling,Allergic Reaction,3,2025-10-13 16:17,Pending,Dr. Lee
-1014,Ahmad Rahim,Head Trauma,5,2025-10-13 00:01,Processing,Dr. Lee
-1015,Melissa Chan,Allergic Reaction,2,2025-10-16 06:36,Resolved,Dr. Rahman
-1016,Michael Chong,Head Trauma,3,2025-10-15 09:45,Processing,Dr. Lee
-1017,David Lee,Stroke,3,2025-10-14 11:42,Resolved,Dr. Lee
-1018,Wei Ling,Asthma Attack,3,2025-10-16 04:56,Pending,Dr. Wong
-1019,Hassan Ismail,Head Trauma,5,2025-10-11 10:31,Pending,Dr. Chan
-1020,Adam Lim,Cardiac Arrest,2,2025-10-14 01:57,Resolved,Dr. Lim
-1021,Wei Ling,Stroke,3,2025-10-10 16:51,Pending,Dr. Chan
-1022,Noraini Osman,Cardiac Arrest,3,2025-10-11 21:54,Resolved,Dr. Wong
-1023,Adam Lim,Bleeding,1,2025-10-11 11:08,Resolved,Dr. Chan
-1024,Noraini Osman,Stroke,2,2025-10-15 16:26,Processing,Dr. Lim
-1025,Zara Ahmad,Poisoning,4,2025-10-10 05:09,Resolved,Dr. Aisha
-1026,David Lee,Allergic Reaction,3,2025-10-15 10:08,Pending,Dr. Kumar
-1027,Noraini Osman,Head Trauma,4,2025-10-12 20:00,Resolved,Dr. Chan
-1028,John Tan,Poisoning,2,2025-10-13 20:43,Resolved,Dr. Aisha
-1029,Zara Ahmad,Accident,4,2025-10-12 06:16,Pending,Dr. Rahman
-1030,Alex Yong,Asthma Attack,4,2025-10-11 22:48,Pending,Dr. Kumar
-1031,Aisha Ali,Allergic Reaction,3,2025-10-14 22:23,Processing,Dr. Wong
-1032,Noraini Osman,Fracture,3,2025-10-15 05:47,Resolved,Dr. Wong
-1033,Liyana Hassan,Accident,3,2025-10-14 02:52,Resolved,Dr. Aisha
-1034,Farah Zain,Poisoning,4,2025-10-11 08:42,Pending,Dr. Kumar
-1035,Chong Wei,Head Trauma,5,2025-10-10 15:46,Processing,Dr. Kumar
-1036,Adam Lim,Fracture,1,2025-10-11 20:49,Pending,Dr. Rahman
-1037,Siti Nurhaliza,Asthma Attack,5,2025-10-16 13:10,Processing,Dr. Lim
-1038,Chong Wei,Poisoning,2,2025-10-11 23:39,Resolved,Dr. Aisha
-1039,Noraini Osman,Allergic Reaction,4,2025-10-10 01:10,Processing,Dr. Wong
-1040,Siti Nurhaliza,Accident,4,2025-10-10 23:45,Pending,Dr. Aisha
-1041,Wei Ling,Accident,5,2025-10-13 09:43,Processing,Dr. Rahman
-1042,Kenji Wong,Allergic Reaction,1,2025-10-14 01:12,Pending,Dr. Aisha
-1043,Wei Ling,Fracture,3,2025-10-10 02:01,Resolved,Dr. Rahman
-1044,Hassan Ismail,Head Trauma,2,2025-10-16 13:57,Processing,Dr. Rahman
-1045,David Lee,Allergic Reaction,2,2025-10-16 06:50,Pending,Dr. Lim
-1046,Ahmad Rahim,Poisoning,1,2025-10-11 16:03,Pending,Dr. Chan
-1047,Michael Chong,Severe Burns,4,2025-10-11 21:29,Resolved,Dr. Lim
-1048,Hassan Ismail,Cardiac Arrest,2,2025-10-16 10:12,Pending,Dr. Aisha
-1049,Ahmad Rahim,Bleeding,3,2025-10-12 14:35,Processing,Dr. Rahman
-1050,Liyana Hassan,Cardiac Arrest,4,2025-10-14 22:59,Resolved,Dr. Lim
+CaseID,PatientName,EmergencyType,PriorityLevel,ArrivalTime,Status
+1003,Farah Zain,Asthma Attack,1,2025-10-10 11:41,Resolved
+1008,David Lee,Fracture,1,2025-10-13 15:22,Pending
+1009,Noraini Osman,Bleeding,1,2025-10-14 13:57,Pending
+1011,Suresh Raj,Stroke,1,2025-10-10 17:31,Resolved
+1023,Adam Lim,Bleeding,1,2025-10-11 11:08,Resolved
+1036,Adam Lim,Fracture,1,2025-10-11 20:49,Pending
+1042,Kenji Wong,Allergic Reaction,1,2025-10-14 01:12,Pending
+1046,Ahmad Rahim,Poisoning,1,2025-10-11 16:03,Pending
+1004,Liyana Hassan,Stroke,2,2025-10-14 05:15,Processing
+1012,Aisha Ali,Cardiac Arrest,2,2025-10-15 10:45,Pending
+1015,Melissa Chan,Allergic Reaction,2,2025-10-16 06:36,Resolved
+1020,Adam Lim,Cardiac Arrest,2,2025-10-14 01:57,Resolved
+1024,Noraini Osman,Stroke,2,2025-10-15 16:26,Processing
+1028,John Tan,Poisoning,2,2025-10-13 20:43,Resolved
+1038,Chong Wei,Poisoning,2,2025-10-11 23:39,Resolved
+1044,Hassan Ismail,Head Trauma,2,2025-10-16 13:57,Processing
+1045,David Lee,Allergic Reaction,2,2025-10-16 06:50,Pending
+1048,Hassan Ismail,Cardiac Arrest,2,2025-10-16 10:12,Pending
+1005,Suresh Raj,Fracture,3,2025-10-11 03:11,Resolved
+1007,Ahmad Rahim,Fracture,3,2025-10-11 15:54,Resolved
+1013,Wei Ling,Allergic Reaction,3,2025-10-13 16:17,Pending
+1016,Michael Chong,Head Trauma,3,2025-10-15 09:45,Processing
+1017,David Lee,Stroke,3,2025-10-14 11:42,Resolved
+1018,Wei Ling,Asthma Attack,3,2025-10-16 04:56,Pending
+1021,Wei Ling,Stroke,3,2025-10-10 16:51,Pending
+1022,Noraini Osman,Cardiac Arrest,3,2025-10-11 21:54,Resolved
+1026,David Lee,Allergic Reaction,3,2025-10-15 10:08,Pending
+1031,Aisha Ali,Allergic Reaction,3,2025-10-14 22:23,Processing
+1032,Noraini Osman,Fracture,3,2025-10-15 05:47,Resolved
+1033,Liyana Hassan,Accident,3,2025-10-14 02:52,Resolved
+1043,Wei Ling,Fracture,3,2025-10-10 02:01,Resolved
+1049,Ahmad Rahim,Bleeding,3,2025-10-12 14:35,Processing
+1002,Melissa Chan,Head Trauma,4,2025-10-10 15:48,Processing
+1006,Ahmad Rahim,Severe Burns,4,2025-10-16 08:53,Resolved
+1025,Zara Ahmad,Poisoning,4,2025-10-10 05:09,Resolved
+1027,Noraini Osman,Head Trauma,4,2025-10-12 20:00,Resolved
+1029,Zara Ahmad,Accident,4,2025-10-12 06:16,Pending
+1030,Alex Yong,Asthma Attack,4,2025-10-11 22:48,Pending
+1034,Farah Zain,Poisoning,4,2025-10-11 08:42,Pending
+1039,Noraini Osman,Allergic Reaction,4,2025-10-10 01:10,Processing
+1040,Siti Nurhaliza,Accident,4,2025-10-10 23:45,Pending
+1047,Michael Chong,Severe Burns,4,2025-10-11 21:29,Resolved
+1050,Liyana Hassan,Cardiac Arrest,4,2025-10-14 22:59,Resolved
+1001,Ravi Kumar,Fracture,5,2025-10-10 10:00,Processing
+1010,Noraini Osman,Allergic Reaction,5,2025-10-12 16:22,Processing
+1014,Ahmad Rahim,Head Trauma,5,2025-10-13 00:01,Processing
+1019,Hassan Ismail,Head Trauma,5,2025-10-11 10:31,Pending
+1035,Chong Wei,Head Trauma,5,2025-10-10 15:46,Processing
+1037,Siti Nurhaliza,Asthma Attack,5,2025-10-16 13:10,Processing
+1041,Wei Ling,Accident,5,2025-10-13 09:43,Processing
