@@ -42,6 +42,31 @@ public:
     // Function 3: Display Ambulance Schedule (Show all in rotation order)
     void displayAmbulanceSchedule();
 
+    // Function 4: Search Ambulance (by ID or Driver Name)
+    void searchAmbulance();
+    int findAmbulanceIndexByID(string id);
+    int findAmbulanceIndexByDriver(string driverName);
+
+    // Function 5: Update Ambulance Details
+    void updateAmbulanceDetails();
+    bool updateAmbulanceStatus(string id, string newStatus);
+
+    // Function 6: Remove Ambulance from Queue
+    void removeAmbulanceFromQueue();
+    bool removeAmbulanceByID(string id);
+
+    // Function 7: Display Queue Statistics
+    void displayQueueStatistics();
+    int getTotalDistanceCovered();
+    double getAverageDistance();
+    int getAvailableCount();
+    int getBusyCount();
+
+    // Function 8: Filter Display Options
+    void displayByStatus(string status);
+    void displayByLocation(string location);
+    void displayAvailableAmbulances();
+
     // Load data from CSV file
     void loadFromCSV(string filename);
 
