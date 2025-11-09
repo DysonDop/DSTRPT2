@@ -1,52 +1,52 @@
 Ambulance ID,Driver Name,Status,Last Dispatch Time,Next Shift (Rotation Order),Location (Current Station),Distance Covered (km)
-A005,Prakash Raj,Under Maintenance,08:48,1,Kapar Health Post,33
-A006,Lim Wei Jian,Refuelling / Restocking,09:00,2,Taman Sentosa Medical Base,40
-A007,Aisyah Zahra,Available at Base,09:12,3,Hospital HQ - Emergency Wing,47
-A008,Faizal Bahri,Dispatched to Scene,09:24,4,Bandar Klang Medical Station,54
-A009,Chong Mei Ling,Transporting Patient,09:36,5,Bukit Raja Response Unit,61
-A010,Haziq Danish,At Hospital (Offloading),09:48,6,Port Klang Substation,68
-A011,Amirul Hassan,Under Maintenance,10:00,7,Kapar Health Post,75
-A012,Siti Rahmah,Refuelling / Restocking,10:12,8,Taman Sentosa Medical Base,82
-A013,Daniel Chong,Available at Base,10:24,9,Hospital HQ - Emergency Wing,89
-A014,Nurul Aina,Dispatched to Scene,10:36,10,Bandar Klang Medical Station,96
-A015,Prakash Raj,Transporting Patient,10:48,11,Bukit Raja Response Unit,103
-A016,Lim Wei Jian,At Hospital (Offloading),11:00,12,Port Klang Substation,110
-A017,Aisyah Zahra,Under Maintenance,11:12,13,Kapar Health Post,117
-A018,Faizal Bahri,Refuelling / Restocking,11:24,14,Taman Sentosa Medical Base,124
-A019,Chong Mei Ling,Available at Base,11:36,15,Hospital HQ - Emergency Wing,11
-A020,Haziq Danish,Dispatched to Scene,11:48,16,Bandar Klang Medical Station,18
-A021,Amirul Hassan,Transporting Patient,12:00,17,Bukit Raja Response Unit,25
-A022,Siti Rahmah,At Hospital (Offloading),12:12,18,Port Klang Substation,32
-A023,Daniel Chong,Under Maintenance,12:24,19,Kapar Health Post,39
-A024,Nurul Aina,Refuelling / Restocking,12:36,20,Taman Sentosa Medical Base,46
-A025,Prakash Raj,Available at Base,12:48,21,Hospital HQ - Emergency Wing,53
-A026,Lim Wei Jian,Dispatched to Scene,13:00,22,Bandar Klang Medical Station,60
-A027,Aisyah Zahra,Transporting Patient,13:12,23,Bukit Raja Response Unit,67
-A028,Faizal Bahri,At Hospital (Offloading),13:24,24,Port Klang Substation,74
-A029,Chong Mei Ling,Under Maintenance,13:36,25,Kapar Health Post,81
-A030,Haziq Danish,Refuelling / Restocking,13:48,26,Taman Sentosa Medical Base,88
-A031,Amirul Hassan,Available at Base,14:00,27,Hospital HQ - Emergency Wing,95
-A032,Siti Rahmah,Dispatched to Scene,14:12,28,Bandar Klang Medical Station,102
-A033,Daniel Chong,Transporting Patient,14:24,29,Bukit Raja Response Unit,109
-A034,Nurul Aina,At Hospital (Offloading),14:36,30,Port Klang Substation,116
-A035,Prakash Raj,Under Maintenance,14:48,31,Kapar Health Post,123
-A036,Lim Wei Jian,Refuelling / Restocking,15:00,32,Taman Sentosa Medical Base,10
-A037,Aisyah Zahra,Available at Base,15:12,33,Hospital HQ - Emergency Wing,17
-A038,Faizal Bahri,Dispatched to Scene,15:24,34,Bandar Klang Medical Station,24
-A039,Chong Mei Ling,Transporting Patient,15:36,35,Bukit Raja Response Unit,31
-A040,Haziq Danish,At Hospital (Offloading),15:48,36,Port Klang Substation,38
-A041,Amirul Hassan,Under Maintenance,16:00,37,Kapar Health Post,45
-A042,Siti Rahmah,Refuelling / Restocking,16:12,38,Taman Sentosa Medical Base,52
-A043,Daniel Chong,Available at Base,16:24,39,Hospital HQ - Emergency Wing,59
-A044,Nurul Aina,Dispatched to Scene,16:36,40,Bandar Klang Medical Station,66
-A045,Prakash Raj,Transporting Patient,16:48,41,Bukit Raja Response Unit,73
-A046,Lim Wei Jian,At Hospital (Offloading),17:00,42,Port Klang Substation,80
-A047,Aisyah Zahra,Under Maintenance,17:12,43,Kapar Health Post,87
-A048,Faizal Bahri,Refuelling / Restocking,17:24,44,Taman Sentosa Medical Base,94
-A049,Chong Mei Ling,Available at Base,17:36,45,Hospital HQ - Emergency Wing,101
-A050,Haziq Danish,Dispatched to Scene,17:48,46,Bandar Klang Medical Station,108
-A001,Amirul Hassan,Off-Duty (Resting),08:00,47,Hospital HQ - Emergency Wing,5
-A051,Siti Rahmah,At Hospital (Offloading),6:45,48,Hospital HQ - Emergency Wing,4
-A051,Amirul Hassan,Transporting Patient,5.50,49,Hospital HQ - Emergency Wing,5
-A003,Daniel Chong,Off-Duty (Resting),08:24,50,Bukit Raja Response Unit,19
-A004,Nurul Aina,Off-Duty (Resting),08:36,51,Port Klang Substation,26
+A007,Aisyah Zahra,Available at Base,09:12,1,Hospital HQ - Emergency Wing,47
+A008,Faizal Bahri,Dispatched to Scene,09:24,2,Bandar Klang Medical Station,54
+A009,Chong Mei Ling,Transporting Patient,09:36,3,Bukit Raja Response Unit,61
+A010,Haziq Danish,At Hospital (Offloading),09:48,4,Port Klang Substation,68
+A011,Amirul Hassan,Under Maintenance,10:00,5,Kapar Health Post,75
+A012,Siti Rahmah,Refuelling / Restocking,10:12,6,Taman Sentosa Medical Base,82
+A013,Daniel Chong,Available at Base,10:24,7,Hospital HQ - Emergency Wing,89
+A014,Nurul Aina,Dispatched to Scene,10:36,8,Bandar Klang Medical Station,96
+A015,Prakash Raj,Transporting Patient,10:48,9,Bukit Raja Response Unit,103
+A016,Lim Wei Jian,At Hospital (Offloading),11:00,10,Port Klang Substation,110
+A017,Aisyah Zahra,Under Maintenance,11:12,11,Kapar Health Post,117
+A018,Faizal Bahri,Refuelling / Restocking,11:24,12,Taman Sentosa Medical Base,124
+A019,Chong Mei Ling,Available at Base,11:36,13,Hospital HQ - Emergency Wing,11
+A020,Haziq Danish,Dispatched to Scene,11:48,14,Bandar Klang Medical Station,18
+A021,Amirul Hassan,Transporting Patient,12:00,15,Bukit Raja Response Unit,25
+A022,Siti Rahmah,At Hospital (Offloading),12:12,16,Port Klang Substation,32
+A023,Daniel Chong,Under Maintenance,12:24,17,Kapar Health Post,39
+A024,Nurul Aina,Refuelling / Restocking,12:36,18,Taman Sentosa Medical Base,46
+A025,Prakash Raj,Available at Base,12:48,19,Hospital HQ - Emergency Wing,53
+A026,Lim Wei Jian,Dispatched to Scene,13:00,20,Bandar Klang Medical Station,60
+A027,Aisyah Zahra,Transporting Patient,13:12,21,Bukit Raja Response Unit,67
+A028,Faizal Bahri,At Hospital (Offloading),13:24,22,Port Klang Substation,74
+A029,Chong Mei Ling,Under Maintenance,13:36,23,Kapar Health Post,81
+A030,Haziq Danish,Refuelling / Restocking,13:48,24,Taman Sentosa Medical Base,88
+A031,Amirul Hassan,Available at Base,14:00,25,Hospital HQ - Emergency Wing,95
+A032,Siti Rahmah,Dispatched to Scene,14:12,26,Bandar Klang Medical Station,102
+A033,Daniel Chong,Transporting Patient,14:24,27,Bukit Raja Response Unit,109
+A034,Nurul Aina,At Hospital (Offloading),14:36,28,Port Klang Substation,116
+A035,Prakash Raj,Under Maintenance,14:48,29,Kapar Health Post,123
+A036,Lim Wei Jian,Refuelling / Restocking,15:00,30,Taman Sentosa Medical Base,10
+A037,Aisyah Zahra,Available at Base,15:12,31,Hospital HQ - Emergency Wing,17
+A038,Faizal Bahri,Dispatched to Scene,15:24,32,Bandar Klang Medical Station,24
+A039,Chong Mei Ling,Transporting Patient,15:36,33,Bukit Raja Response Unit,31
+A040,Haziq Danish,At Hospital (Offloading),15:48,34,Port Klang Substation,38
+A041,Amirul Hassan,Under Maintenance,16:00,35,Kapar Health Post,45
+A042,Siti Rahmah,Refuelling / Restocking,16:12,36,Taman Sentosa Medical Base,52
+A043,Daniel Chong,Available at Base,16:24,37,Hospital HQ - Emergency Wing,59
+A044,Nurul Aina,Dispatched to Scene,16:36,38,Bandar Klang Medical Station,66
+A045,Prakash Raj,Transporting Patient,16:48,39,Bukit Raja Response Unit,73
+A046,Lim Wei Jian,At Hospital (Offloading),17:00,40,Port Klang Substation,80
+A047,Aisyah Zahra,Refuelling / Restocking,17:12,41,Kapar Health Post,87
+A048,Faizal Bahri,Refuelling / Restocking,17:24,42,Taman Sentosa Medical Base,94
+A049,Chong Mei Ling,Available at Base,17:36,43,Hospital HQ - Emergency Wing,101
+A050,Haziq Danish,Dispatched to Scene,17:48,44,Bandar Klang Medical Station,108
+A001,Amirul Hassan,Available at Base,08:00,45,Hospital HQ - Emergency Wing,5
+A051,Amirul Hassan,Transporting Patient,5.50,46,Hospital HQ - Emergency Wing,5
+A003,Daniel Chong,Off-Duty (Resting),08:24,47,Bukit Raja Response Unit,19
+A004,Nurul Aina,Off-Duty (Resting),08:36,48,Port Klang Substation,26
+A005,Prakash Raj,Off-Duty (Resting),08:48,49,Kapar Health Post,33
+A052,Siti Rahmah,Available at Base,12.59,50,Hospital HQ - Emergency Wing,5
+A006,Lim Wei Jian,Off-Duty (Resting),09:00,51,Taman Sentosa Medical Base,40

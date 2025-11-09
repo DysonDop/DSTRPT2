@@ -1086,15 +1086,14 @@ void ambulanceDispatcherMenu() {
         cout << "  2. Rotate Ambulance Shift\n";
         cout << "  3. Display Ambulance Schedule\n";
         cout << "\nAMBULANCE MANAGEMENT:\n";
-        cout << "  4. Search Ambulance\n";
-        cout << "  5. Update Ambulance Details\n";
-        cout << "  6. Remove Ambulance from Queue\n";
+        cout << "  4. Update Ambulance Details\n";
+        cout << "  5. Remove Ambulance from Queue\n";
         cout << "\nREPORTS & ANALYTICS:\n";
-        cout << "  7. Display Queue Statistics\n";
-        cout << "  8. Filter Display Options\n";
+        cout << "  6. Display Queue Statistics\n";
+        cout << "  7. Filter Display Options\n";
         cout << "\nDATA MANAGEMENT:\n";
-        cout << "  9. Load Data from CSV (Reload)\n";
-        cout << " 10. Save Data to CSV\n";
+        cout << "  8. Load Data from CSV (Reload)\n";
+        cout << "  9. Save Data to CSV\n";
         cout << "\n  0. Return to Main Menu\n";
         cout << "-----------------------------------------------------------------------\n";
         cout << "\nEnter your choice: ";
@@ -1118,19 +1117,15 @@ void ambulanceDispatcherMenu() {
                 globalDispatcher->displayAmbulanceSchedule();
                 break;
             case 4:
-                cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
-                globalDispatcher->searchAmbulance();
-                break;
-            case 5:
                 globalDispatcher->updateAmbulanceDetails();
                 break;
-            case 6:
+            case 5:
                 globalDispatcher->removeAmbulanceFromQueue();
                 break;
-            case 7:
+            case 6:
                 globalDispatcher->displayQueueStatistics();
                 break;
-            case 8: {
+            case 7: {
                 int filterTypeChoice;
                 cout << "\n";
                 cout << "=======================================================================\n";
@@ -1257,23 +1252,23 @@ void ambulanceDispatcherMenu() {
                 }
                 break;
             }
-            case 9:
+            case 8:
                 globalDispatcher->loadFromCSV(AMBULANCE_CSV_FILENAME);
                 break;
-            case 10:
+            case 9:
                 globalDispatcher->saveToCSV(AMBULANCE_CSV_FILENAME);
                 break;
             case 0:
                 cout << "\nReturning to Main Menu...\n";
                 break;
             default:
-                cout << "\n[ERROR] Invalid choice! Please enter a number between 0-10.\n";
+                cout << "\n[ERROR] Invalid choice! Please enter a number between 0-9.\n";
         }
         
         // Pause before showing menu again (except when exiting)
-        if (choice != 0 && choice >= 1 && choice <= 10) {
+        if (choice != 0 && choice >= 1 && choice <= 9) {
             cout << "\nPress Enter to continue...";
-            cin.ignore();
+            cin.ignore(INPUT_BUFFER_CLEAR_SIZE, '\n');
             cin.get();
         }
     } while (choice != 0);
